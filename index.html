@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>çç¦¾ä¸åç¢ç¶ç´ â å»ºç¯ã»æ¿ç¢æ´ååé</title>
+<style>
+:root {
+  --primary: #1a3a1a;
+  --primary-light: #2d5a1e;
+  --accent: #c8a845;
+  --accent-light: #e8d070;
+  --bg-dark: #0f1f0f;
+  --bg-light: #f5f5f0;
+  --text-dark: #1a1a1a;
+  --text-light: #f0f0e8;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--text-dark);background:var(--bg-light);line-height:1.7;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,31,15,0.95);backdrop-filter:blur(10px);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:70px;border-bottom:1px solid rgba(200,168,69,0.2);}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text-light);cursor:pointer;}
+.nav-logo .logo-icon{width:44px;height:44px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:var(--primary);}
+.nav-logo span{font-size:18px;font-weight:700;letter-spacing:2px;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{color:var(--text-light);text-decoration:none;font-size:14px;letter-spacing:1px;opacity:0.85;transition:all 0.3s;cursor:pointer;}
+.nav-links a:hover{opacity:1;color:var(--accent);}
+.mobile-toggle{display:none;cursor:pointer;color:var(--text-light);font-size:24px;}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,var(--bg-dark) 0%,var(--primary) 50%,var(--primary-light) 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(200,168,69,0.08) 0%,transparent 60%),radial-gradient(circle at 70% 60%,rgba(45,90,30,0.15) 0%,transparent 50%);}
+.hero-content{position:relative;z-index:1;max-width:800px;}
+.hero-badge{display:inline-block;padding:8px 24px;border-radius:30px;background:rgba(200,168,69,0.15);border:1px solid rgba(200,168,69,0.3);color:var(--accent);font-size:14px;letter-spacing:3px;margin-bottom:32px;}
+.hero h1{font-size:clamp(36px,6vw,64px);color:var(--text-light);font-weight:800;line-height:1.2;margin-bottom:16px;}
+.hero h1 .accent{color:var(--accent);}
+.hero p{font-size:18px;color:rgba(240,240,232,0.7);max-width:600px;margin:0 auto 40px;}
+.hero-btn{display:inline-block;padding:14px 40px;background:var(--accent);color:var(--primary);font-weight:700;font-size:15px;letter-spacing:1px;border-radius:4px;text-decoration:none;transition:all 0.3s;cursor:pointer;}
+.hero-btn:hover{background:var(--accent-light);transform:translateY(-2px);}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:56px;}
+.hero-stat{text-align:center;}
+.hero-stat .num{font-size:36px;font-weight:800;color:var(--accent);}
+.hero-stat .label{font-size:13px;color:rgba(240,240,232,0.5);margin-top:4px;}
+
+/* SECTIONS */
+section{padding:100px 40px;}
+.section-header{text-align:center;margin-bottom:64px;}
+.section-tag{display:inline-block;font-size:13px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;font-weight:600;}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--primary);margin-bottom:16px;}
+.section-desc{font-size:16px;color:#666;max-width:640px;margin:0 auto;}
+.container{max-width:1200px;margin:0 auto;}
+
+/* ABOUT */
+#about{background:var(--bg-dark);}
+#about .section-title{color:var(--text-light);}
+#about .section-desc{color:rgba(240,240,232,0.6);}
+.about-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.about-text h3{color:var(--accent);font-size:22px;margin-bottom:16px;}
+.about-text p{color:rgba(240,240,232,0.75);margin-bottom:14px;font-size:14.5px;line-height:1.9;}
+.about-highlight{background:rgba(200,168,69,0.08);border:1px solid rgba(200,168,69,0.15);border-radius:12px;padding:24px;margin-top:20px;}
+.about-highlight p{color:var(--accent);font-size:14px;margin:0;font-weight:500;}
+.about-right{display:flex;flex-direction:column;gap:24px;}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.stat-card{background:rgba(200,168,69,0.08);border:1px solid rgba(200,168,69,0.15);border-radius:12px;padding:24px;text-align:center;}
+.stat-card .num{font-size:36px;font-weight:800;color:var(--accent);}
+.stat-card .label{font-size:13px;color:rgba(240,240,232,0.6);margin-top:4px;}
+.csr-box{background:rgba(45,90,30,0.15);border:1px solid rgba(45,90,30,0.3);border-radius:12px;padding:24px;}
+.csr-box h4{color:var(--accent);font-size:15px;margin-bottom:10px;}
+.csr-box p{color:rgba(240,240,232,0.65);font-size:13px;line-height:1.8;margin-bottom:8px;}
+
+/* ADVANTAGES */
+#advantages{background:white;}
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;}
+.adv-card{background:var(--bg-light);border-radius:12px;padding:32px;border:1px solid transparent;transition:all 0.3s;}
+.adv-card:hover{border-color:var(--accent);transform:translateY(-4px);}
+.adv-icon{font-size:36px;margin-bottom:16px;}
+.adv-card h4{font-size:17px;color:var(--primary);margin-bottom:10px;font-weight:700;}
+.adv-card p{font-size:13px;color:#666;line-height:1.8;}
+
+/* TRACK RECORD */
+#track-record{background:var(--bg-light);}
+.record-table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+.record-table thead{background:var(--primary);}
+.record-table th{color:white;padding:14px 16px;font-size:13px;font-weight:600;text-align:left;}
+.record-table td{padding:12px 16px;font-size:13px;color:#555;border-bottom:1px solid #f0f0f0;}
+.record-table tr:hover td{background:rgba(200,168,69,0.04);}
+.record-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;}
+.tag-buy{background:rgba(200,168,69,0.15);color:#8a7020;}
+.tag-rent{background:rgba(45,90,30,0.12);color:#2d5a1e;}
+
+/* SERVICES */
+#services{background:white;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;}
+.service-card{background:var(--bg-light);border-radius:12px;padding:36px;border:1px solid transparent;transition:all 0.3s;position:relative;overflow:hidden;}
+.service-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+.service-card .num{font-size:48px;font-weight:900;color:rgba(26,58,26,0.06);position:absolute;top:16px;right:24px;}
+.service-card h3{font-size:20px;color:var(--primary);margin-bottom:12px;font-weight:700;}
+.service-card .tag{display:inline-block;padding:4px 12px;border-radius:20px;background:rgba(200,168,69,0.12);color:var(--accent);font-size:12px;font-weight:600;margin-bottom:16px;}
+.service-card p{font-size:14px;color:#666;line-height:1.8;}
+
+/* ORG CHART */
+#org{background:var(--bg-dark);}
+#org .section-title{color:var(--text-light);}
+#org .section-desc{color:rgba(240,240,232,0.6);}
+.org-chart{display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 0;}
+.org-level{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;position:relative;}
+.org-node{background:rgba(200,168,69,0.1);border:1px solid rgba(200,168,69,0.25);border-radius:10px;padding:14px 24px;text-align:center;min-width:160px;transition:all 0.3s;}
+.org-node:hover{border-color:var(--accent);background:rgba(200,168,69,0.18);}
+.org-node.head{background:rgba(200,168,69,0.2);border:2px solid var(--accent);}
+.org-node .name{color:var(--text-light);font-weight:700;font-size:15px;}
+.org-node .title{color:var(--accent);font-size:12px;margin-top:2px;}
+.org-connector{width:2px;height:28px;background:rgba(200,168,69,0.3);margin:0 auto;}
+.org-h-line{width:80%;height:2px;background:rgba(200,168,69,0.2);margin:0 auto;}
+
+/* TEAM */
+#team{background:var(--bg-light);}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:28px;}
+.team-card{background:white;border-radius:12px;padding:32px 20px;text-align:center;transition:all 0.3s;border:1px solid transparent;cursor:pointer;}
+.team-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(200,168,69,0.15);}
+.team-avatar{width:90px;height:90px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:white;}
+.team-card h4{font-size:18px;color:var(--primary);margin-bottom:4px;}
+.team-card .role{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;}
+.team-card p{font-size:13px;color:#888;line-height:1.6;}
+.team-card .view-more{display:inline-block;margin-top:12px;font-size:12px;color:var(--primary-light);font-weight:600;letter-spacing:1px;opacity:0;transition:opacity 0.3s;}
+.team-card:hover .view-more{opacity:1;}
+
+/* MEMBER DETAIL */
+.member-overlay{position:fixed;inset:0;z-index:200;background:rgba(15,31,15,0.85);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:80px 20px 40px;}
+.member-overlay.active{display:flex;}
+.member-detail{background:white;border-radius:16px;max-width:900px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden;animation:slideUp 0.4s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+.member-detail-header{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);padding:48px 40px;display:flex;align-items:center;gap:32px;position:relative;}
+.member-detail-close{position:absolute;top:20px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.member-detail-close:hover{background:rgba(255,255,255,0.25);}
+.member-detail-avatar{width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:800;color:white;border:3px solid rgba(200,168,69,0.4);flex-shrink:0;}
+.member-detail-info h2{color:white;font-size:28px;margin-bottom:4px;}
+.member-detail-info .title{color:var(--accent);font-size:15px;font-weight:600;}
+.member-detail-info .company{color:rgba(240,240,232,0.6);font-size:13px;margin-top:4px;}
+.member-detail-body{padding:40px;}
+.detail-section{margin-bottom:32px;}
+.detail-section:last-child{margin-bottom:0;}
+.detail-section h3{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block;}
+.detail-section p,.detail-section li{font-size:14px;color:#555;line-height:1.9;}
+.detail-section ul{list-style:none;padding:0;}
+.detail-section ul li{padding:6px 0 6px 20px;position:relative;}
+.detail-section ul li::before{content:'';position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;background:var(--accent);}
+.detail-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.detail-tag{padding:6px 16px;border-radius:20px;background:rgba(200,168,69,0.1);color:var(--primary);font-size:13px;font-weight:500;}
+
+/* CONTACT */
+#contact{background:var(--bg-dark);text-align:center;}
+#contact .section-title{color:var(--text-light);}
+#contact .section-desc{color:rgba(240,240,232,0.6);}
+.contact-info{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:40px;}
+.contact-item{color:var(--text-light);text-align:center;}
+.contact-item .icon{width:56px;height:56px;border-radius:50%;background:rgba(200,168,69,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;}
+.contact-item .label{font-size:12px;color:rgba(240,240,232,0.5);letter-spacing:1px;}
+.contact-item .value{font-size:15px;margin-top:4px;color:var(--accent);}
+
+footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240,232,0.3);font-size:13px;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:rgba(15,31,15,0.98);padding:20px;gap:16px;}
+  .nav-links.active{display:flex;}
+  .mobile-toggle{display:block;}
+  section{padding:60px 20px;}
+  .about-content{grid-template-columns:1fr;gap:40px;}
+  .services-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+  .contact-info{gap:28px;}
+  .hero-stats{flex-direction:column;gap:20px;}
+  .member-detail-header{flex-direction:column;text-align:center;padding:36px 24px;}
+  .member-detail-body{padding:24px;}
+  .member-overlay{padding:20px 12px 40px;}
+  .record-table{font-size:12px;}
+  .record-table th,.record-table td{padding:8px 10px;}
+  .adv-grid{grid-template-columns:1fr;}
+  .org-level{flex-direction:column;align-items:center;}
+}
+
+    .team-avatar-wrap{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden;background:#eee;}
+    .team-photo-thumb{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
+    .member-detail-avatar-wrap{position:relative;flex-shrink:0;}
+    .member-photo-large{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;display:block;}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" onclick="closeMemberDetail();window.scrollTo({top:0,behavior:'smooth'})">
+    <div class="logo-icon">ç¦¾</div>
+    <span>çç¦¾ä¸åç¢</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a onclick="closeMemberDetail()" href="#about">å¬å¸ä»ç´¹</a>
+    <a onclick="closeMemberDetail()" href="#advantages">æ ¸å¿åªå¢</a>
+    <a onclick="closeMemberDetail()" href="#track-record">éå¾å¯¦ç¸¾</a>
+    <a onclick="closeMemberDetail()" href="#services">æåé ç®</a>
+    <a onclick="closeMemberDetail()" href="#org">çµç¹æ¶æ§</a>
+    <a onclick="closeMemberDetail()" href="#team">åéæå¡</a>
+    <a onclick="closeMemberDetail()" href="#contact">è¯çµ¡æå</a>
+  </div>
+  <div class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')">&#9776;</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">RUIHE REAL ESTATE</div>
+    <h1>å°æ¥­ã»èª ä¿¡ã»åå¯¦<br><span class="accent">ç¢æ¥­ç¨å°æ´åå°å®¶</span></h1>
+    <p>æ·±èä¸­èºç£å·¥æ¥­å°ç¢ï¼ä»¥å°æ¥­ç¥è­åå·¥åä»£å³çµ±å®åµä½æ°ï¼æ­å»ºè¡æ¿é¨éãå°ä¸»èå» åéä¹æºéå¹³å°ï¼ç²¾æºåªåç¢æ¥­ç¨å°ã</p>
+    <a href="#about" class="hero-btn">èªè­çç¦¾ â</a>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">8å¹´+</div><div class="label">é£çºæ¿æ¥ç¶æ¿é¨å°æ¡</div></div>
+      <div class="hero-stat"><div class="num">16,869</div><div class="label">mÂ² ç´¯è¨æ´»ååå°é¢ç©</div></div>
+      <div class="hero-stat"><div class="num">12ä½</div><div class="label">è·¨é åå°æ¥­åé</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- âï¸ å¬å¸ç°¡ä»æ²¿é© -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ABOUT US</div>
+      <h2 class="section-title">éæ¼çç¦¾</h2>
+      <p class="section-desc">ä»¥åéå°æ¥­å·è¡åï¼åå©å®¢æ¶æé¤è¡æ¿éæª»ï¼è¿éææ¡æè³å¥æ©</p>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <h3>å¬å¸ç°¡ä»èæ²¿é©</h3>
+        <p><strong>çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸</strong>èªæç«ä»¥ä¾ï¼å§çµç§æãå°æ¥­ãèª ä¿¡ãåå¯¦ãçç¶ççå¿µï¼é·ææ·±èæ¼å·¥æ¥­å°ç¢èç¢æ¥­ç¨å°åªåé åãæåæ·±ç¥ç¢æ¥­ç¨å°ä¸åæ¯ä¼æ¥­ç¼å±çåºç³ï¼æ´æ¯æ¨åèºç£ç¢æ¥­è½åèååç¶æ¿æé·çæ ¸å¿ã</p>
+        <p>æ¬åéæ·±èä¸­èºç£å·¥æ¥­å°ç¢ï¼ä»¥å°æ¥­ç¥è­åå·¥åä»£å³çµ±å®åµä½æ°ï¼çµåè±å¯å¯¦åç¶é©ï¼å°æ³¨æ¼ä¸­é¨å°åä¹ç¢æ¥­éä½ãæåä¸åªæ¯å®ç´çä¸åç¢ä»²ä»è§è²ï¼æ´å®ä½çº<strong>ç¢æ¥­ç¼å±ä¹å·è¡æ¨æ</strong>ï¼è´åæ¼æ­å»ºè¡æ¿é¨éãå°ä¸»èå» åéä¹æºéå¹³å°ã</p>
+        <p>å¨å·è¡å¯¦ç¸¾æ¹é¢ï¼æ¬åéè¿å¹´ç´¯è¨æååªåé¾6ä»¶ç¢æ¥­ç¨å°éç¼æ¡ï¼ç¸½è¨æ´»åéç½®åå°é¢ç©é<strong>16,869å¹³æ¹å¬å°º</strong>ï¼æ¾åå©åªä¹åãè¯å¼·åéãç­é®®ãæ­å®¢ä½¬åéç­ææ¨æ§ä¼æ¥­å®æè¨­å» é¸åãç¨å°åå¾æéç½®å» åèåãæç§ç­æ¥­åã</p>
+        <div class="about-highlight">
+          <p>ãå¨ç¾è¡æ³ä»¤æ¡æ¶ä¸ï¼ä»¥åéå°æ¥­å·è¡ååå©å®¢æ¶æé¤è¡æ¿éæª»ï¼è¿éææ¡æè³å¥æ©ãã</p>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="stat-row">
+          <div class="stat-card"><div class="num">8å¹´</div><div class="label">é£çºæ¿æ¥ç¶æ¿é¨<br>ç¢æ¥­ç¨å°åªåæ¡</div></div>
+          <div class="stat-card"><div class="num">6+</div><div class="label">æååªå<br>ç¢æ¥­ç¨å°éç¼æ¡</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-card"><div class="num">16,869</div><div class="label">mÂ² ç´¯è¨æ´»å<br>éç½®åå°é¢ç©</div></div>
+          <div class="stat-card"><div class="num">4ç¸£å¸</div><div class="label">æåç¯å<br>èä¸­å½°æ</div></div>
+        </div>
+        <div class="csr-box">
+          <h4>ä¼æ¥­ç¤¾æè²¬ä»»</h4>
+          <p>æ¬å¬å¸å°ä¼æ¥­ç¤¾æè²¬ä»»è¦çºæ ¸å¿ç«¶ç­åï¼ç§æãäººæçºæåä¹æ¬ãçå¿µï¼é·ææå¥è³æºå»ºæ§å¥åº·ãå¹³ç­ä¸å·æ¿åµæ§ä¹è·å ´ç°å¢ã</p>
+          <p>å·²å»ºç½®å®æ´ä¹å§é¨æ§å¶èé¢¨éªç®¡çå¶åº¦ï¼ææå°æ¡å·è¡äººå¡åå·ååå®¶ç´å°æ¥­è­ç§ï¼ä¸¦å¦è¡å§è«å°æ¥­æ³å¾é¡§åæä¾å³ææ³åè«®è©¢èå¯©æ¥æ¯æ´ã</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- âï¸ æ ¸å¿åªå¢ -->
+<section id="advantages">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ADVANTAGES</div>
+      <h2 class="section-title">æ ¸å¿åªå¢</h2>
+      <p class="section-desc">è·¨é ååéãå¨æ¹ä½æåãç²¾æºåªå</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-icon">&#x1F3DB;</div>
+        <h4>æ¿åºå°æ¡å·è¡ç¶é©</h4>
+        <p>105-112å¹´é£çº8å¹´æ¿æ¥ç¶æ¿é¨ç¢æ¥­ååç®¡çå±åä¸­ååç¢æ¥­ç¨å°åªåæ¡ï¼å·åè±å¯å¬é¨éå°æ¡å±¥ç´ç¶é©ã</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">&#x1F91D;</div>
+        <h4>å°æ¥­ç¥è­åå·¥åé</h4>
+        <p>åééç½®è¨ç«ä¸»æäººãæ³å¾é¡§åãå°æ¿å£«ãç¶ç´äººåå°æ¡äººå¡ï¼ä»¥å°æ¥­åå·¥åä»£å³çµ±å®åµä½æ°ã</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">&#x1F4CB;</div>
+        <h4>å¨å¡åå®¶ç´è­ç§</h4>
+        <p>ææå°æ¡å·è¡äººå¡åå·åä¸åç¢ç¶ç´äººãçæ¥­å¡ãå°æ¿å£«ç­åå®¶ç´å°æ¥­è­ç§ï¼ç¢ºä¿æååæ³åè¦ã</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">&#x1F3AF;</div>
+        <h4>æ·±èä¸­èºç£ç¢æ¥­èè½</h4>
+        <p>æåç¯åæ¶µèèæ ãèºä¸­ãå½°åãåæåå¤§è¡æ¿åï¼æ¶µèå¨èãç·è¥¿ãå¤§ç²ãéé¼ç­æ ¸å¿å·¥æ¥­åã</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">&#x1F512;</div>
+        <h4>äº¤æå®å¨å¤éä¿é</h4>
+        <p>ç¹³å­çæ¥­ä¿è­é25è¬åãå°æ¡å±¥ç´ä¿è­é14è¬åï¼æææäº¤æ¡å¼·å¶æ¡ç¨ãè²·è³£å¹éå±¥ç´ä¿è­æ©å¶ãã</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">&#x1F310;</div>
+        <h4>ä¸ç«å¼æ´åæ¹æ¡</h4>
+        <p>æ´åæ³å¾é¡§åãç¹ç´å°æ¿å£«åå°æ¥­ç¶ç´äººçµæé¡§ååéï¼æä¾è¨­å» æ³ä»¤è«®è©¢ãå» åé²é§ãåå°åªåå¨æµç¨æåã</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- âï¸ éå¾å¯¦ç¸¾ -->
+<section id="track-record">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">TRACK RECORD</div>
+      <h2 class="section-title">éå¾åªåå¯¦ç¸¾</h2>
+      <p class="section-desc">ç´¯è¨åªå6ç­ç¢æ¥­ç¨å°ï¼æ´»åé¢ç©é1.69å¬é </p>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="record-table">
+        <thead>
+          <tr>
+            <th>æäº¤æ¥æ</th>
+            <th>æ¨çä½ç½®</th>
+            <th>äº¤æé¡å</th>
+            <th>æ¨çé¡å</th>
+            <th>é¢ç©(mÂ²)</th>
+            <th>å®¢æ¶èæ¯</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>112å¹´4æ</td>
+            <td>è¥¿å±¯åååæ®µ</td>
+            <td><span class="record-tag tag-buy">è²·è³£</span></td>
+            <td>ä¹ç¨®å·¥æ¥­ç¨å°</td>
+            <td>6,938</td>
+            <td>ç­é®® â æ·éå·¥ç¨</td>
+          </tr>
+          <tr>
+            <td>112å¹´7æ</td>
+            <td>å¤ªå¹³åå®ææ±è·¯</td>
+            <td><span class="record-tag tag-buy">è²·è³£</span></td>
+            <td>å» æ¿</td>
+            <td>2,134</td>
+            <td>ä»æ³°åå·¥ â éè¯é£å</td>
+          </tr>
+          <tr>
+            <td>113å¹´10æ</td>
+            <td>å¤§éåç·´æ­¦æ®µ</td>
+            <td><span class="record-tag tag-buy">è²·è³£</span></td>
+            <td>ä¸ç¨®å»ºç¯ç¨å°</td>
+            <td>1,587</td>
+            <td>èªç¶äºº â ç¿æ±æ¸ä½é»å</td>
+          </tr>
+          <tr>
+            <td>113å¹´12æ</td>
+            <td>åå±¯åå·¥æ¥­åäºååè·¯</td>
+            <td><span class="record-tag tag-rent">ç§è³</span></td>
+            <td>å» æ¿</td>
+            <td>2,439</td>
+            <td>è¯å¼·åé â åªä¹å</td>
+          </tr>
+          <tr>
+            <td>114å¹´6æ</td>
+            <td>æ½­å­åå¤§å¯è·¯</td>
+            <td><span class="record-tag tag-rent">ç§è³</span></td>
+            <td>å» æ¿</td>
+            <td>2,578</td>
+            <td>åè²å¯¦æ¥­ â æ­å®¢ä½¬åé</td>
+          </tr>
+          <tr>
+            <td>114å¹´12æ</td>
+            <td>åå±¯åç²¾ç§ä¸­è·¯</td>
+            <td><span class="record-tag tag-rent">ç§è³</span></td>
+            <td>å» æ¿</td>
+            <td>1,193</td>
+            <td>å°ç£åè¶ â åæ°çæ/æ¯æ³°æª¢é©</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;justify-content:center;gap:40px;margin-top:40px;flex-wrap:wrap;">
+      <div style="text-align:center;"><div style="font-size:32px;font-weight:800;color:var(--primary);">3ç­</div><div style="font-size:13px;color:#888;">è²·è³£æäº¤</div></div>
+      <div style="text-align:center;"><div style="font-size:32px;font-weight:800;color:var(--primary);">3ç­</div><div style="font-size:13px;color:#888;">ç§è³æäº¤</div></div>
+      <div style="text-align:center;"><div style="font-size:32px;font-weight:800;color:var(--primary);">16,869 mÂ²</div><div style="font-size:13px;color:#888;">ç¸½æ´»åé¢ç©</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- âï¸ æåé ç® -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">SERVICES</div>
+      <h2 class="section-title">å°æ¥­ä»²ä»æåå§å®¹</h2>
+      <p class="section-desc">å«å¤§å·é«å·è¡åæ³ï¼å¾èª¿æ¥å°åªåä¸æ¢é¾</p>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- âï¸ çµç¹æ¶æ§å -->
+<section id="org">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ORGANIZATION</div>
+      <h2 class="section-title">äººåéç½®çµç¹å</h2>
+      <p class="section-desc">å°æ¥­åå·¥ãå±¤ç´æç¢ºãè·¨ååä½</p>
+    </div>
+    <div class="org-chart">
+      <!-- Level 1: ç¸½å¬éäºº -->
+      <div class="org-level">
+        <div class="org-node head"><div class="name">é»é é</div><div class="title">å°æ¡è¨ç«ç¸½å¬éäººã»è£äºé·</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <!-- Level 2: ä¸»æäºº -->
+      <div class="org-level">
+        <div class="org-node head"><div class="name">å¼µç¾å</div><div class="title">å°æ¡è¨ç«ä¸»æäººã»æ¥­åç¸½ç£</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <!-- Level 3: ååä¸»æäºº -->
+      <div class="org-level">
+        <div class="org-node"><div class="name">å¼µå±ç¿</div><div class="title">ååè¨ç«ä¸»æäººã»åç</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-h-line"></div>
+      <div style="height:12px;"></div>
+      <!-- Level 4: å°æ¥­æ¯æ´ -->
+      <div class="org-level">
+        <div class="org-node"><div class="name">æ³å¾é¡§å</div><div class="title">å°æ¥­æ³åè«®è©¢</div></div>
+        <div class="org-node"><div class="name">ç¾æ¸è¬</div><div class="title">ä¸åç¢ç¶ç´äººã»å·è¡å¯ç¸½</div></div>
+        <div class="org-node"><div class="name">é³åå®</div><div class="title">ç¹ç´å°æ¿å£«</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-h-line"></div>
+      <div style="height:12px;"></div>
+      <!-- Level 5: æ¥­ååé -->
+      <div class="org-level">
+        <div class="org-node"><div class="name">æ­ç©é³³</div><div class="title">å°æ¡æ¥­åç¶ç</div></div>
+        <div class="org-node"><div class="name">ææ­¦ç¦</div><div class="title">å°æ¡æ¥­åç¶ç</div></div>
+        <div class="org-node"><div class="name">ç¾é·åº</div><div class="title">å°æ¡æ¥­åç¶ç</div></div>
+        <div class="org-node"><div class="name">çå»·å®¶</div><div class="title">å°æ¡æ¥­åç¶ç</div></div>
+        <div class="org-node"><div class="name">é³ä»å¥</div><div class="title">å°æ¡æ¥­åç¶ç</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-h-line" style="width:30%;"></div>
+      <div style="height:12px;"></div>
+      <!-- Level 6: è¡æ¿æ¯æ´ -->
+      <div class="org-level">
+        <div class="org-node"><div class="name">é»å®¶ç¦</div><div class="title">å°æ¡è¡æ¿äººå¡</div></div>
+        <div class="org-node"><div class="name">å¼µç¶­ç´</div><div class="title">å°æ¡è¡æ¿äººå¡</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">TEAM MEMBERS</div>
+      <h2 class="section-title">åéæå¡ä»ç´¹</h2>
+      <p class="section-desc">é»æä»»ä¸æå¡ï¼æ¥çå®æ´åäººå±¥æ­·</p>
+    </div>
+    <div class="team-grid" id="teamGrid"></div>
+  </div>
+</section>
+
+<!-- MEMBER DETAIL OVERLAY -->
+<div class="member-overlay" id="memberOverlay">
+  <div class="member-detail" id="memberDetail"></div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">CONTACT US</div>
+      <h2 class="section-title">è¯çµ¡çç¦¾</h2>
+      <p class="section-desc">æ­¡è¿æ´½è©¢ï¼æåå°çºæ¨æä¾æå°æ¥­çè«®è©¢æå</p>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item"><div class="icon">&#x1F4CD;</div><div class="label">å°å</div><div class="value">èºä¸­å¸åå±¯åçè±è·¯åæ®µ91è</div></div>
+      <div class="contact-item"><div class="icon">&#x1F4DE;</div><div class="label">é»è©±</div><div class="value">04-2380-3560</div></div>
+      <div class="contact-item"><div class="icon">&#x1F4E0;</div><div class="label">å³ç</div><div class="value">04-2380-3160</div></div>
+      <div class="contact-item"><div class="icon">&#x1F464;</div><div class="label">è¯çµ¡äºº</div><div class="value">å¼µç¾å ç¸½ç£</div></div>
+    </div>
+  </div>
+</section>
+
+<footer><p>&copy; 2026 çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ RUIHE Real Estate. All Rights Reserved.</p></footer>
+
+<script>
+/* âï¸ æåé ç® */
+const servicesData = [
+  { title:"éç½®ç¨å°èª¿æ¥èè³æåº«å»ºç«", tag:"SURVEY", desc:"éå°èä¸­å½°æåç¸£å¸ä¹æå®ç¢æ¥­åååæ½å¨ç¢æ¥­ç¨å°ï¼é²è¡å¯¦å°åæ¥èèª¿é±å°ç±è³æï¼ç²¾ç¢ºææ¡åå°å©ç¨ç¾æ³ã" },
+  { title:"æ½å¨æè³å» åéç¼", tag:"INVESTOR", desc:"æ¡ä¸»åæè¨ªèéè·¯å¼æµéè»ç­ç¥ï¼å®æåèåå¤§ç¢æ¥­å¬æå¹´æåè¯èª¼æ´»åï¼ä¸»åèéä¼æ¥­æ´å» ãåæµæè³æåã" },
+  { title:"ç¢æ¥­ç¨å°åªåèå¨ç¨å±¥æ­·ç®¡ç", tag:"MATCHING", desc:"å°åªåä½æ¥­ååä»²ä»åªåãåªåæåãåæ³ä½¿ç¨è¿½è¹¤ä¸å¤§éæ®µï¼å»ºæ§è³è¨å°ç¨±ä¹åªåç°å¢ï¼éä½ä¾ééæ¹æºéææ¬ã" },
+  { title:"æ¿ç­æ³ä»¤æè²è¨ç·´", tag:"TRAINING", desc:"ä¸å®æèè¾¦äººå¡æè²è¨ç·´ï¼ç±æ³å¾é¡§åèè³æ·±è¨ç«ä¸»æäººè¦ªèªæèª²ï¼ç¢ºä¿åéç²¾æºè§£è®æ¿ç­æä»¤èæ³ä»¤ç¾æ³ã" },
+  { title:"å°äººå°æ¡å®ä¸è¯çµ¡çªå£", tag:"WINDOW", desc:"å»ºç«èä¸­é¨åç¢æ¥­ååæåä¸­å¿ä¹å®ä¸çªå£æ©å¶ï¼å³æææ¡ååå§å» åéæ±æåå°éåºè¨æ¯ã" },
+  { title:"ä¸ç«å¼å°æ¥­è«®è©¢åå©", tag:"ONE-STOP", desc:"æ´åæ³å¾é¡§åãç¹ç´å°æ¿å£«åå°æ¥­ç¶ç´äººï¼æä¾è¨­å» æ³ä»¤è«®è©¢ãå» åé²é§è«®è©¢ãåå°åªåç­å¨æ¹ä½æåã" },
+  { title:"å¤åè¡é·éè·¯èè³è¨æ«é²", tag:"MARKETING", desc:"ééåå¤§å»£åå¹³å°ãå»£ååç©ãç¾å ´å¸å¸å»£ååå°ç£å·¥æ¥­ç¨å°ä¾çµ¦èæåè³è¨ç¶²ç­ç®¡éï¼å¬éæ«é²å¾åªååå°è³è¨ã" },
+  { title:"å·è¡äººå¡æ§ç®¡æ©å¶", tag:"CONTROL", desc:"å·è¡äººå¡åå®å ±åæ©éï¼çµ±ä¸ä½©æ´å°å±¬è­å¥è­é²è¡ç¾å°è¨ªè¦ï¼ç¢ºä¿å·è¡ç¨åºä¹å°æ¥­æ§èå®å¨é²ç¯ã" }
+];
+
+/* âï¸ åéæå¡ */
+const teamData = [
+  {
+    name:"é»é é", role:"å°æ¡è¨ç«ç¸½å¬éäºº", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ è£äºé·", color:"#1a3a1a",
+    shortIntro:"20å¹´ä¸åç¢éç¼ç¶é©ï¼å°ç²¾ç¢æ¥­ç¨å°åªåèå¤§åå°æ¡è¦åã",
+    education:"é¢ç²å¤§å­¸ é½å¸è¨ç«èç©ºéè³è¨å­¸ç ç©¶æï¼ç¢ï¼",
+    duty:"è² è²¬æ¬è¨ç«ä¹ç¸½é«è¦å",
+    experience:["è±ç¦¾å°ç¢ç¸½ç¶çï¼104-109å¹´ï¼","å°ä¸­å¸ä¸åç¢ç¼å±åæå¯çäºé·ï¼114-116å¹´ï¼","é«ç§æç¢æ¥­ç¼å±åºéæè£äºï¼113-115å¹´ï¼"],
+    expertise:["ç¢æ¥­ç¨å°åªåèæåï¼çæå·¥æ¥­åãå¸å°éååéç¼è¼å°","å·¥æ¥­å°ç¢æ³è¦ï¼å·åæªç»è¨å·¥å» æ¸æ¥ãç´ç®¡ååæ³åå¯¦åç¶é©","å¤§åå» æ¿æ´åï¼æé·é«å¹å¼ç¢æ¥­ä¸åç¢ä¹è²·è³£èç§è³åèª¿"],
+    achievements:["ç¶æ¿é¨ç¢æ¥­ååç®¡çå±ï¼105-112å¹´é£çº8å¹´åä¸­ååç¢æ¥­ç¨å°åªåæ¡å°æ¡è¨ç«ä¸»æäºº","æ°åå¸æ¿åºï¼108-109å¹´æå£å·¥ä¸åå¯¶é«æºæ§ç¢æ¥­ååæåè¨ç«ä¸»æäºº","108å¹´èºä¸­å¸æ¸æ¥æªç»è¨å·¥å» å·¥ä½è¨ç«ä¸»æäºº","ãèæ ç¸£æ¿åºæ¸æ¥æªç»è¨å·¥å» è¨ç«ãå§è¨å°æ¥­æåæ¡è¨ç«ä¸»æäºº","ãæ°ç«¹å¸æ¸æ¥æªç»è¨å·¥å» å·¥ä½è¨ç«ãå§è¨å°æ¥­æåæ¡è¨ç«ä¸»æäºº"],
+    licenses:[]
+  },
+  {
+    name:"å¼µç¾å", role:"å°æ¡è¨ç«ä¸»æäºº", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ å·¥æ¥­å°ç¢é¨æ¥­åç¸½ç£", color:"#2d5a1e",
+    shortIntro:"ä¸åç¢æ¥­åå·è¡å°å®¶ï¼å°ç²¾å¸å ´åæèå°æ¡æ´åã",
+    education:"é·åºå¤§å­¸ è³è¨ç®¡çç ç©¶æï¼ç¢ï¼",
+    duty:"è² è²¬æ¬è¨ç«ä¹å·è¡èé²åº¦æ§ç®¡ï¼æ´åä¸åç¢å°æ¥­è©ä¼°ãæ³è¦èå¯¦åç¶é©ï¼çµ±ç±ç¸éè³æºèå°æ¥­äººå¡ï¼ä¸¦æä»»ä¸»è¦å°å¤è¯ç¹«èå°æ¥­æ±ºç­çªå£",
+    experience:["ç¦èå°ç¢éç¼æ¥­åç¸½ç£","ç£ç³å°ç¢æ¥­åç¸½ç£","ä¿¡ç¾©å¨çè³ç¢ä¸­ååä»²é¨æ¥­åç¸½ç£","ä¿¡ç¾©æ¿å±æ¥­ååæ¥­åç¶ç"],
+    expertise:["ä¸åç¢æ¥­åå·è¡","å¸å ´åæãäº¤ææµç¨è¦å","å°æ¡æ´åèé¢¨éªè©ä¼°"],
+    achievements:["åä»²é«ç³»éæï¼ä¸»å°æç«ä¿¡ç¾©å¨çè³ç¢ä¸­ååä»²é¨ï¼å¥ å®ä¸­é¨åç¨ä¸åç¢å°æ¥­æååºç¤","å»ºå°éç¼æ´åï¼æ´åå¤ç­ææ¨æ§å»ºå°ï¼çºæ å®ãå¾·é«ç­ç¥åå»ºè¨­å¬å¸åä½å¤¥ä¼´","å·¥æ¥­è³ç¢éç½®ï¼åå©æ¥ååªä¹åãè¯å¼·åéãæ­å®¢ä½¬åéãä»æ³°åå·¥ãæ·éå·¥ç¨åç§å®æ¸ä½ç­ææ¨ä¼æ¥­å®æå» æ¿é¸åèè³ç¢æ´»å"],
+    licenses:["ä¸åç¢ç¶ç´äººè­ç§ï¼(108)ä¸­å¸ç¶ç´å­ç¬¬01847è"]
+  },
+  {
+    name:"å¼µå±ç¿", role:"ååå°æ¡è¨ç«ä¸»æäºº", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ åç", color:"#3a6b28",
+    shortIntro:"å°ç²¾å¸å°éåèå¤ååªé«è³æºæ´åã",
+    education:"é¢ç²å¤§å­¸ é½å¸è¨ç«èç©ºéè³è¨å­¸ç³»ç ç©¶æï¼ç¢ï¼",
+    duty:"è² è²¬æ¬è¨ç«ä¹è¡æ¿ç®¡çãç­ç¥æ¬å®èå°æ¡è³ææ§ç®¡",
+    experience:["çç¦¾éç¼è¡ä»½æéå¬å¸ 3å¹´","çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ 2å¹´"],
+    expertise:["å¸å°éåãèªè¾¦ç¢æ¥­ååéç¼è¼å°","å¤ååªé«è³æºæ´å","ä¸åç¢ä¹è²·è³£èç§è³åèª¿"],
+    achievements:["åå©å®ææ°åå¸æé«ä¸ãäºå¸å°éåæ¡åªé«å½±é³è£½ä½ï¼å·²çµæ¡ï¼","åå©å®ææ°ç«¹ä¸­æ²¹æ²¹åº«å¸å°éåæ¡åªé«å½±é³è£½ä½ï¼å·²çµæ¡ï¼","åå©åç¾©ç¸£ç¸£æ²»äºæå¸å°éåæ¡åªé«å½±é³è£½ä½ååªé«æåï¼è¾¦çä¸­ï¼","108å¹´èºä¸­å¸æ¸æ¥æªç»è¨å·¥å» å·¥ä½è¨ç«å°æ¡äººå¡ï¼å·²çµæ¡ï¼","ãèæ ç¸£æ¿åºæ¸æ¥æªç»è¨å·¥å» è¨ç«ãå§è¨å°æ¥­æåæ¡å°æ¡äººå¡ï¼å·²çµæ¡ï¼"],
+    licenses:[]
+  },
+  {
+    name:"ç¾æ¸è¬", role:"ä¸åç¢ç¶ç´äºº", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ å·è¡å¯ç¸½", color:"#1a4a2a",
+    shortIntro:"è² è²¬è²·è³£äº¤æãç§è³å¥ç´æ¬å®èæ´é«äº¤æå®å¨ç®¡æ§ã",
+    education:"é¢ç²å¤§å­¸ å»ºè¨­å­¸é¢ç¢©å£«ï¼ç¢ï¼",
+    duty:"è² è²¬æ¬è¨ç«ä¹è²·è³£äº¤æãç§è³å¥ç´æ¬å®å·è¡ãæ´é«äº¤æå®å¨ç®¡æ§",
+    experience:["å°æ¶ä¸åç¢ 7å¹´","å¯æºæ¿å± 2å¹´","ä¿¡ç¾©æ¿å± 2å¹´"],
+    expertise:["å¸å°éåãèªè¾¦ç¢æ¥­ååéç¼è¼å°","ä¸åç¢ä¹è²·è³£èç§è³åèª¿"],
+    achievements:[],
+    licenses:["ä¸åç¢ç¶ç´äººè­ç§ï¼(100)ä¸­å¸ç¶ç´å­ç¬¬00156è"]
+  },
+  {
+    name:"é³åå®", role:"å°æ¡ç¹ç´å°æ¿å£«", company:"åæµ¤å°æ¿å£«äºåæ å·è¡å°æ¿å£«", color:"#2a5535",
+    shortIntro:"å°ç²¾ç¢æ¥­ç¨å°äº¤ææ³è¦ãç¨æ³åäº¤æå®å¨æ§ç®¡ã",
+    education:"é¢ç²å¤§å­¸ å»ºè¨­å­¸é¢ç¢©å£«ï¼ç¢ï¼",
+    duty:"è² è²¬æ¬è¨ç«ä¹è²·è³£äº¤æãç§è³å¥ç´æ¬å®å·è¡ãæ´é«äº¤æå®å¨ç®¡æ§",
+    experience:["é¸åºå»ºè¨­æéå¬å¸ 2å¹´","ä¿¡ç¾©å°æ¿å£«äºåæ 5å¹´","éåä¸åç¢ç¶ç´æ¥­è¡ä»½æéå¬å¸ 4å¹´","å°åå¯é¦éè¡ 1å¹´","åæµ¤å°æ¿å£«äºåæ 15å¹´"],
+    expertise:["ç¢æ¥­ç¨å°äº¤æç¸éæ³è¦","ä¸åç¢äº¤æç¸éç¨æ³ãæéåäºé ","é«å¹å¼ç¢æ¥­ä¸åç¢ä¹è²·è³£èç§è³å¥ç´æ¬å®åäº¤æå®å¨æ§ç®¡"],
+    achievements:[],
+    licenses:["ä¸åç¢ç¶ç´äººï¼(103)ä¸­å¸ç¶ç´å­ç¬¬00338è","å°æ¿å£«å·ç§ï¼(101)ä¸­å¸å°å£«å­ç¬¬000334è","ååè¨ç«å°æ¥­è¨ç·´ï¼ååå°è©¦å­ç¬¬112C192è"]
+  },
+  {
+    name:"æ­ç©é³³", role:"å°æ¡æ¥­åç¶ç", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ æ¥­å", color:"#1e4520",
+    shortIntro:"å°ç²¾ä¸åç¢è²·è³£èç§è³åèª¿ã",
+    education:"é«éé¤æå¤§å­¸é¤æå­¸é¢ æé¤¨ç®¡çç³»ï¼ç¢ï¼",
+    duty:"ç¢æ¥­ç¨å°ä¹è²·è³£èç§è³",
+    experience:["å°ç£æ¿å± 3å¹´","ä»£æ¸äºåæ 2å¹´"],
+    expertise:["ä¸åç¢ä¹è²·è³£èç§è³åèª¿"],
+    achievements:[],
+    licenses:["ä¸åç¢çæ¥­å¡è­æ¸ï¼(107)ç»å­ç¬¬331322è"]
+  },
+  {
+    name:"é»å®¶ç¦", role:"å°æ¡è¡æ¿äººå¡", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ æ¥­å", color:"#325a18",
+    shortIntro:"è² è²¬ææ¸å¸³åèçãæ¡ä»¶é²åº¦è¿½è¹¤èè¡æ¿åº¶åã",
+    education:"æé½ç§æå¤§å­¸ æè¨ç³»ï¼ç¢ï¼",
+    duty:"åé ææ¸åå¸³åèç",
+    experience:["çç¦¾éç¼è¡ä»½æéå¬å¸ 4å¹´"],
+    expertise:["åå©ä¸»ç®¡è¾¦çå¸å°éåãèªè¾¦ç¢æ¥­ååéç¼","æ´çå®¢æ¶è³æãæ¡ä»¶é²åº¦è¿½è¹¤","è£½ä½èç¶­è­·ç©ä»¶è³æï¼å°èãåªæ¸ãå¹æ ¼ãä½¿ç¨ååç­ï¼","åå©è£½ä½æ¯ææ¶æ¯å ±è¡¨ãè²¡åå ±è¡¨åç®¡çå ±è¡¨","éåæè¨å¸«ãè¨å¸³å£«é²è¡å¸³ååè²¡åè³ææä¾"],
+    achievements:[],
+    licenses:["ä¸åç¢çæ¥­å¡è­æ¸ï¼(114)ç»å­ç¬¬501096è"]
+  },
+  {
+    name:"ææ­¦ç¦", role:"å°æ¡æ¥­åç¶ç", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ åºé·", color:"#2a4a15",
+    shortIntro:"ä¸åç¢ç¶çç®¡çãéç¼é·å®èä»²ä»ã",
+    education:"å¤§æä¸­å­¸ è³è¨ç§",
+    duty:"ç¢æ¥­ç¨å°ä¹è²·è³£èç§è³",
+    experience:[],
+    expertise:["ä¸åç¢ç¶çç®¡ç","éç¼é·å®","ä»²ä»"],
+    achievements:[],
+    licenses:["ä¸åç¢çæ¥­å¡è­æ¸ï¼ç»å­ç¬¬429739è","ç§è³ä½å®ç®¡çäººå¡ï¼ç¬¬014878è"]
+  },
+  {
+    name:"ç¾é·åº", role:"å°æ¡æ¥­åç¶ç", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ åºé·", color:"#1a3a2a",
+    shortIntro:"å°ç²¾å¸å°éååéç¼åªåã",
+    education:"åç«å¤çç§æå¤§å­¸ æ©é»ç¢æ¥­ç ç¼èç®¡çç¢æ¥­ç¢©å£«å°ç­ï¼ç¢ï¼",
+    duty:"ç¢æ¥­ç¨å°ä¹è²·è³£èç§è³",
+    experience:["å¸å°éååéç¼åªå"],
+    expertise:["å¸å°éååéç¼åªå"],
+    achievements:[],
+    licenses:["ä¸åç¢çæ¥­å¡è­æ¸ï¼(111)ç»å­ç¬¬426942è","è¾²å°è¦åå¸«è­ç§"]
+  },
+  {
+    name:"å¼µç¶­ç´", role:"å°æ¡è¡æ¿äººå¡", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ ç§æ¸", color:"#284a22",
+    shortIntro:"è² è²¬ææ¸èçãç°¡å ±è£½ä½èç©ä»¶è¡é·ã",
+    education:"æé½ç§æå¤§å­¸ å³æ­èè¡ç³»ï¼ç¢ï¼",
+    duty:"åé ææ¸åå¸³åèç",
+    experience:["æå·¢æ°æ¿å± 3å¹´","çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ 2å¹´"],
+    expertise:["åå©ä¸»ç®¡è¾¦çå¸å°éåãèªè¾¦ç¢æ¥­ååéç¼","æ´çå®¢æ¶è³æãæ¡ä»¶é²åº¦è¿½è¹¤","åå©ä¸»ç®¡ç°¡å ±è£½ä½ãè³æçµ±æ´","åå©ç©ä»¶è¡é·äºé ï¼å¹³å°ä¸æ¶ãå»£åè£½ä½ãå½©åè£½ä½ï¼","åå©äººäºç¸éè¡æ¿äºé "],
+    achievements:[],
+    licenses:["ä¸åç¢ç¶ç´äººè­ç§ï¼(114)ä¸­å¸ç¶ç´å­02353è"]
+  },
+  {
+    name:"çå»·å®¶", role:"å°æ¡æ¥­åç¶ç", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ åºé·", color:"#2d4a18",
+    shortIntro:"æ·±èå°ä¸­æ°èéååï¼å°ç²¾åå°éç¼æ´åã",
+    education:"åéç§æå¤§å­¸ è¡é·æµéç®¡çç³»ï¼ç¢ï¼",
+    duty:"ç¢æ¥­ç¨å°ä¹è²·è³£èç§è³",
+    experience:["ä¸åç¢ç¶çç®¡çãéç¼é·å®ãä»²ä»"],
+    expertise:["åå°éç¼æ´å","å¸å°éåå¯¦å","åæ®µå¾µæ¶è¦å"],
+    achievements:["éååéç¼åªåï¼æ·±èå°ä¸­å¸æ°èéååï¼æåä¸»å°å®åäºãå®åä¸ååä¸æç­å¤ç­ééµéååå°ä¹æ´åèä»²ä»æäº¤"],
+    licenses:["ä¸åç¢ç¶ç´äººè­ç§ï¼(104)ä¸­å¸ç¶ç´å­ç¬¬294056è"]
+  },
+  {
+    name:"é³ä»å¥", role:"å°æ¡æ¥­åç¶ç", company:"çç¦¾ä¸åç¢ç¶ç´è¡ä»½æéå¬å¸ æ¥­åç¶ç", color:"#1a4520",
+    shortIntro:"å·¥æ¥­ç¨å°åªåå°å®¶ï¼é·æéåç¶æ¿é¨å·¥æ¥­å±å°æ¡ã",
+    education:"å»ºåç§æå¤§å­¸ åæ¨å·¥ç¨ç³»ï¼ç¢ï¼",
+    duty:"ç¢æ¥­ç¨å°ä¹è²·è³£èç§è³",
+    experience:["ç¶æ¿é¨å·¥æ¥­å±å·¥æ¥­ååªåå°æ¡å°æ¡äººå¡ï¼èªæ°å105å¹´èµ·ï¼","å·¥æ¥­å°ç¢è³æ·±å°æ¥­ç¶çäºº"],
+    expertise:["å·¥æ¥­ç¨å°åªå","ä¼æ¥­è¨­å» é¸åè©ä¼°","åå°ä½¿ç¨ååè®æ´","å·¥æ¥­åæ³è¦è«®è©¢"],
+    achievements:["ææ¨ä¼æ¥­æåï¼åå©ä¸å¸å¬å¸ãç«éé»å­ãé²é§å¨èå» åï¼å®æç´3000åªç¢å°ç¨å°ä¹åªåäº¤æ","å¬é¨éå°æ¡å·è¡ï¼é·æéåç¶æ¿é¨å·¥æ¥­å±å°æ¡ï¼æåç¯åæ¶µèå¨èãç·è¥¿ãå¤§ç²ãéé¼ç­ä¸­é¨æ ¸å¿å·¥æ¥­å","åå°æçæåï¼æåå·è¡åå²ç¨å°ä¹å·¥æ¥­åååè®æ´çºä¸ç¨®å»ºç¯ç¨å°"],
+    licenses:["ä¸åç¢çæ¥­å¡ï¼(112)ç»å­ç¬¬434041è"]
+  }
+];
+
+var nameMap={"黃錠銘":"huang-dingming","張現傑":"chang-hienjie","張凱翔":"chang-kaixiang","羅清萬":"luo-qingwan","陳元宏":"chen-yuanhong","歐穗鳳":"ou-suifeng","黃家禎":"huang-jiazhen","李武燦":"li-wucan","羅長庚":"luo-changgeng","張維純":"chang-weichun","王廷家":"wang-tingjia","陳仁奕":"chen-renyi"};
+// Render services
+const sg = document.getElementById('servicesGrid');
+servicesData.forEach((s,i)=>{
+  sg.innerHTML+=`<div class="service-card"><div class="num">0${i+1}</div><div class="tag">${s.tag}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`;
+});
+
+// Render team
+const tg = document.getElementById('teamGrid');
+teamData.forEach((t,i)=>{
+  tg.innerHTML+=`<div class="team-card" onclick="openMemberDetail(${i})"><div class="team-avatar-wrap"><img class="team-photo-thumb" src="images/persons/${nameMap[t.name]||'unknown'}.jpg" alt="${t.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><div class="team-avatar" style="background:${t.color};display:none">${t.name.charAt(0)}</div></div><h4>${t.name}</h4><div class="role">${t.role}</div><p>${t.shortIntro}</p><div class="view-more">é»ææ¥çè©³æ â</div></div>`;
+});
+
+// Member detail
+function openMemberDetail(idx){
+  const t=teamData[idx],o=document.getElementById('memberOverlay'),d=document.getElementById('memberDetail');
+  const prev=idx>0?idx-1:teamData.length-1, next=idx<teamData.length-1?idx+1:0;
+  let h=`<div class="member-detail-header"><button class="member-detail-close" onclick="closeMemberDetail()">&#10005;</button><div class="member-detail-avatar-wrap"><img class="member-photo-large" src="images/persons/${nameMap[t.name]||'unknown'}.jpg" alt="${t.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><div class="member-detail-avatar" style="background:${t.color};display:none">${t.name.charAt(0)}</div></div><div class="member-detail-info"><h2>${t.name}</h2><div class="title">${t.role}</div><div class="company">${t.company}</div></div></div><div class="member-detail-body"><div class="detail-section"><h3>&#127919; æ¬æ¡è² è²¬å·¥ä½</h3><p>${t.duty}</p></div><div class="detail-section"><h3>&#127891; æé«å­¸æ­·</h3><p>${t.education}</p></div>`;
+  if(t.experience.length)h+=`<div class="detail-section"><h3>&#128188; ç¸éç¶æ­·</h3><ul>${t.experience.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;
+  if(t.expertise.length)h+=`<div class="detail-section"><h3>&#11088; å°é·é å</h3><div class="detail-tags">${t.expertise.map(e=>`<span class="detail-tag">${e}</span>`).join('')}</div></div>`;
+  if(t.achievements.length)h+=`<div class="detail-section"><h3>&#127942; æ ¸å¿ä»£è¡¨å¯¦ç¸¾</h3><ul>${t.achievements.map(a=>`<li>${a}</li>`).join('')}</ul></div>`;
+  if(t.licenses.length)h+=`<div class="detail-section"><h3>&#128220; å°æ¥­è­ç§</h3><ul>${t.licenses.map(l=>`<li>${l}</li>`).join('')}</ul></div>`;
+  h+=`<div style="display:flex;justify-content:space-between;margin-top:40px;padding-top:24px;border-top:1px solid #eee;"><button onclick="openMemberDetail(${prev})" style="padding:10px 24px;border:1px solid #ddd;border-radius:6px;background:white;cursor:pointer;font-size:14px;color:var(--primary);">â ${teamData[prev].name}</button><button onclick="openMemberDetail(${next})" style="padding:10px 24px;border:1px solid #ddd;border-radius:6px;background:white;cursor:pointer;font-size:14px;color:var(--primary);">${teamData[next].name} â</button></div></div>`;
+  d.innerHTML=h;o.classList.add('active');o.scrollTop=0;document.body.style.overflow='hidden';
+}
+function closeMemberDetail(){document.getElementById('memberOverlay').classList.remove('active');document.body.style.overflow='';}
+document.getElementById('memberOverlay').addEventListener('click',function(e){if(e.target===this)closeMemberDetail();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMemberDetail();});
+</script>
+</body>
+</html>
