@@ -17,183 +17,982 @@
   --card-bg: #ffffff;
   --shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--text-dark);background:var(--bg-light);line-height:1.7;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,31,15,0.95);backdrop-filter:blur(10px);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:70px;border-bottom:1px solid rgba(200,168,69,0.2);}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text-light);cursor:pointer;}
-.nav-logo .logo-icon{width:44px;height:44px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:var(--primary);}
-.nav-logo span{font-size:18px;font-weight:700;letter-spacing:2px;}
-.nav-links{display:flex;gap:28px;}
-.nav-links a{color:var(--text-light);text-decoration:none;font-size:14px;letter-spacing:1px;opacity:0.85;transition:all 0.3s;cursor:pointer;}
-.nav-links a:hover{opacity:1;color:var(--accent);}
-.mobile-toggle{display:none;cursor:pointer;color:var(--text-light);font-size:24px;}
-
-/* HERO */
-.hero{min-height:100vh;background:linear-gradient(135deg,var(--bg-dark) 0%,var(--primary) 50%,var(--primary-light) 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(200,168,69,0.08) 0%,transparent 60%),radial-gradient(circle at 70% 60%,rgba(45,90,30,0.15) 0%,transparent 50%);}
-.hero-content{position:relative;z-index:1;max-width:800px;}
-.hero-badge{display:inline-block;padding:8px 24px;border-radius:30px;background:rgba(200,168,69,0.15);border:1px solid rgba(200,168,69,0.3);color:var(--accent);font-size:14px;letter-spacing:3px;margin-bottom:32px;}
-.hero h1{font-size:clamp(36px,6vw,64px);color:var(--text-light);font-weight:800;line-height:1.2;margin-bottom:16px;}
-.hero h1 .accent{color:var(--accent);}
-.hero p{font-size:18px;color:rgba(240,240,232,0.7);max-width:600px;margin:0 auto 40px;}
-.hero-btn{display:inline-block;padding:14px 40px;background:var(--accent);color:var(--primary);font-weight:700;font-size:15px;letter-spacing:1px;border-radius:4px;text-decoration:none;transition:all 0.3s;cursor:pointer;}
-.hero-btn:hover{background:var(--accent-light);transform:translateY(-2px);}
-.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:56px;}
-.hero-stat{text-align:center;}
-.hero-stat .num{font-size:36px;font-weight:800;color:var(--accent);}
-.hero-stat .label{font-size:13px;color:rgba(240,240,232,0.5);margin-top:4px;}
-
-/* SECTIONS */
-section{padding:100px 40px;}
-.section-header{text-align:center;margin-bottom:64px;}
-.section-tag{display:inline-block;font-size:13px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;font-weight:600;}
-.section-title{font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--primary);margin-bottom:16px;}
-.section-desc{font-size:16px;color:#666;max-width:640px;margin:0 auto;}
-.container{max-width:1200px;margin:0 auto;}
-
-/* ABOUT */
-#about{background:var(--bg-dark);}
-#about .section-title{color:var(--text-light);}
-#about .section-desc{color:rgba(240,240,232,0.6);}
-.about-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.about-text h3{color:var(--accent);font-size:22px;margin-bottom:16px;}
-.about-text p{color:rgba(240,240,232,0.75);margin-bottom:14px;font-size:14.5px;line-height:1.9;}
-.about-highlight{background:rgba(200,168,69,0.08);border:1px solid rgba(200,168,69,0.15);border-radius:12px;padding:24px;margin-top:20px;}
-.about-highlight p{color:var(--accent);font-size:14px;margin:0;font-weight:500;}
-.about-right{display:flex;flex-direction:column;gap:24px;}
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.stat-card{background:rgba(200,168,69,0.08);border:1px solid rgba(200,168,69,0.15);border-radius:12px;padding:24px;text-align:center;}
-.stat-card .num{font-size:36px;font-weight:800;color:var(--accent);}
-.stat-card .label{font-size:13px;color:rgba(240,240,232,0.6);margin-top:4px;}
-.csr-box{background:rgba(45,90,30,0.15);border:1px solid rgba(45,90,30,0.3);border-radius:12px;padding:24px;}
-.csr-box h4{color:var(--accent);font-size:15px;margin-bottom:10px;}
-.csr-box p{color:rgba(240,240,232,0.65);font-size:13px;line-height:1.8;margin-bottom:8px;}
-
-/* ADVANTAGES */
-#advantages{background:white;}
-.adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;}
-.adv-card{background:var(--bg-light);border-radius:12px;padding:32px;border:1px solid transparent;transition:all 0.3s;}
-.adv-card:hover{border-color:var(--accent);transform:translateY(-4px);}
-.adv-icon{font-size:36px;margin-bottom:16px;}
-.adv-card h4{font-size:17px;color:var(--primary);margin-bottom:10px;font-weight:700;}
-.adv-card p{font-size:13px;color:#666;line-height:1.8;}
-
-/* TRACK RECORD */
-#track-record{background:var(--bg-light);}
-.record-table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
-.record-table thead{background:var(--primary);}
-.record-table th{color:white;padding:14px 16px;font-size:13px;font-weight:600;text-align:left;}
-.record-table td{padding:12px 16px;font-size:13px;color:#555;border-bottom:1px solid #f0f0f0;}
-.record-table tr:hover td{background:rgba(200,168,69,0.04);}
-.record-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;}
-.tag-buy{background:rgba(200,168,69,0.15);color:#8a7020;}
-.tag-rent{background:rgba(45,90,30,0.12);color:#2d5a1e;}
-
-/* SERVICES */
-#services{background:white;}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;}
-.service-card{background:var(--bg-light);border-radius:12px;padding:36px;border:1px solid transparent;transition:all 0.3s;position:relative;overflow:hidden;}
-.service-card:hover{transform:translateY(-4px);border-color:var(--accent);}
-.service-card .num{font-size:48px;font-weight:900;color:rgba(26,58,26,0.06);position:absolute;top:16px;right:24px;}
-.service-card h3{font-size:20px;color:var(--primary);margin-bottom:12px;font-weight:700;}
-.service-card .tag{display:inline-block;padding:4px 12px;border-radius:20px;background:rgba(200,168,69,0.12);color:var(--accent);font-size:12px;font-weight:600;margin-bottom:16px;}
-.service-card p{font-size:14px;color:#666;line-height:1.8;}
-
-/* ORG CHART */
-#org{background:var(--bg-dark);}
-#org .section-title{color:var(--text-light);}
-#org .section-desc{color:rgba(240,240,232,0.6);}
-.org-chart{display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 0;}
-.org-level{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;position:relative;}
-.org-node{background:rgba(200,168,69,0.1);border:1px solid rgba(200,168,69,0.25);border-radius:10px;padding:14px 24px;text-align:center;min-width:160px;transition:all 0.3s;}
-.org-node:hover{border-color:var(--accent);background:rgba(200,168,69,0.18);}
-.org-node.head{background:rgba(200,168,69,0.2);border:2px solid var(--accent);}
-.org-node .name{color:var(--text-light);font-weight:700;font-size:15px;}
-.org-node .title{color:var(--accent);font-size:12px;margin-top:2px;}
-.org-connector{width:2px;height:28px;background:rgba(200,168,69,0.3);margin:0 auto;}
-.org-h-line{width:80%;height:2px;background:rgba(200,168,69,0.2);margin:0 auto;}
-
-/* TEAM */
-#team{background:var(--bg-light);}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:28px;}
-.team-card{background:white;border-radius:12px;padding:32px 20px;text-align:center;transition:all 0.3s;border:1px solid transparent;cursor:pointer;}
-.team-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(200,168,69,0.15);}
-.team-avatar{width:90px;height:90px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:white;}
-.team-card h4{font-size:18px;color:var(--primary);margin-bottom:4px;}
-.team-card .role{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;}
-.team-card p{font-size:13px;color:#888;line-height:1.6;}
-.team-card .view-more{display:inline-block;margin-top:12px;font-size:12px;color:var(--primary-light);font-weight:600;letter-spacing:1px;opacity:0;transition:opacity 0.3s;}
-.team-card:hover .view-more{opacity:1;}
-
-/* MEMBER DETAIL */
-.member-overlay{position:fixed;inset:0;z-index:200;background:rgba(15,31,15,0.85);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:80px 20px 40px;}
-.member-overlay.active{display:flex;}
-.member-detail{background:white;border-radius:16px;max-width:900px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden;animation:slideUp 0.4s ease;}
-@keyframes slideUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
-.member-detail-header{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);padding:48px 40px;display:flex;align-items:center;gap:32px;position:relative;}
-.member-detail-close{position:absolute;top:20px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
-.member-detail-close:hover{background:rgba(255,255,255,0.25);}
-.member-detail-avatar{width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:800;color:white;border:3px solid rgba(200,168,69,0.4);flex-shrink:0;}
-.member-detail-info h2{color:white;font-size:28px;margin-bottom:4px;}
-.member-detail-info .title{color:var(--accent);font-size:15px;font-weight:600;}
-.member-detail-info .company{color:rgba(240,240,232,0.6);font-size:13px;margin-top:4px;}
-.member-detail-body{padding:40px;}
-.detail-section{margin-bottom:32px;}
-.detail-section:last-child{margin-bottom:0;}
-.detail-section h3{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block;}
-.detail-section p,.detail-section li{font-size:14px;color:#555;line-height:1.9;}
-.detail-section ul{list-style:none;padding:0;}
-.detail-section ul li{padding:6px 0 6px 20px;position:relative;}
-.detail-section ul li::before{content:'';position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;background:var(--accent);}
-.detail-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.detail-tag{padding:6px 16px;border-radius:20px;background:rgba(200,168,69,0.1);color:var(--primary);font-size:13px;font-weight:500;}
-
-/* CONTACT */
-#contact{background:var(--bg-dark);text-align:center;}
-#contact .section-title{color:var(--text-light);}
-#contact .section-desc{color:rgba(240,240,232,0.6);}
-.contact-info{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:40px;}
-.contact-item{color:var(--text-light);text-align:center;}
-.contact-item .icon{width:56px;height:56px;border-radius:50%;background:rgba(200,168,69,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;}
-.contact-item .label{font-size:12px;color:rgba(240,240,232,0.5);letter-spacing:1px;}
-.contact-item .value{font-size:15px;margin-top:4px;color:var(--accent);}
-
-footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240,232,0.3);font-size:13px;}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  nav{padding:0 20px;}
-  .nav-links{display:none;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:rgba(15,31,15,0.98);padding:20px;gap:16px;}
-  .nav-links.active{display:flex;}
-  .mobile-toggle{display:block;}
-  section{padding:60px 20px;}
-  .about-content{grid-template-columns:1fr;gap:40px;}
-  .services-grid{grid-template-columns:1fr;}
-  .team-grid{grid-template-columns:repeat(2,1fr);}
-  .contact-info{gap:28px;}
-  .hero-stats{flex-direction:column;gap:20px;}
-  .member-detail-header{flex-direction:column;text-align:center;padding:36px 24px;}
-  .member-detail-body{padding:24px;}
-  .member-overlay{padding:20px 12px 40px;}
-  .record-table{font-size:12px;}
-  .record-table th,.record-table td{padding:8px 10px;}
-  .adv-grid{grid-template-columns:1fr;}
-  .org-level{flex-direction:column;align-items:center;}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-    .team-avatar-wrap{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden;background:#eee;border-radius:10px 10px 0 0;}
-    .team-photo-thumb{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
-    .member-detail-avatar-wrap{position:relative;flex-shrink:0;}
-    .member-photo-large{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;display:block;}
-  </style>
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  color: var(--text-dark);
+  background: var(--bg-light);
+  line-height: 1.7;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(15, 31, 15, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  border-bottom: 1px solid rgba(200, 168, 69, 0.2);
+  transition: top 0.3s ease;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.nav-logo .logo-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--primary);
+}
+
+.nav-logo span {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.mobile-toggle {
+  display: none;
+  cursor: pointer;
+  color: var(--text-light);
+  font-size: 24px;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(200, 168, 69, 0.08) 0%, transparent 60%),
+              radial-gradient(circle at 70% 60%, rgba(45, 90, 30, 0.15) 0%, transparent 50%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 30px;
+  background: rgba(200, 168, 69, 0.15);
+  border: 1px solid rgba(200, 168, 69, 0.3);
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  color: var(--text-light);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero h1 .accent {
+  color: var(--accent);
+}
+
+.hero p {
+  font-size: 18px;
+  color: rgba(240, 240, 232, 0.7);
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--accent);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.hero-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 56px;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .num {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.hero-stat .label {
+  font-size: 13px;
+  color: rgba(240, 240, 232, 0.5);
+  margin-top: 4px;
+}
+
+/* SECTIONS */
+section {
+  padding: 100px 40px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: #666;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ABOUT */
+#about {
+  background: var(--bg-dark);
+}
+
+#about .section-title {
+  color: var(--text-light);
+}
+
+#about .section-desc {
+  color: rgba(240, 240, 232, 0.6);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-text h3 {
+  color: var(--accent);
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.about-text p {
+  color: rgba(240, 240, 232, 0.75);
+  margin-bottom: 14px;
+  font-size: 14.5px;
+  line-height: 1.9;
+}
+
+.about-highlight {
+  background: rgba(200, 168, 69, 0.08);
+  border: 1px solid rgba(200, 168, 69, 0.15);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.about-highlight p {
+  color: var(--accent);
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(200, 168, 69, 0.08);
+  border: 1px solid rgba(200, 168, 69, 0.15);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.stat-card .num {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.stat-card .label {
+  font-size: 13px;
+  color: rgba(240, 240, 232, 0.6);
+  margin-top: 4px;
+}
+
+.csr-box {
+  background: rgba(45, 90, 30, 0.15);
+  border: 1px solid rgba(45, 90, 30, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.csr-box h4 {
+  color: var(--accent);
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.csr-box p {
+  color: rgba(240, 240, 232, 0.65);
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+/* ADVANTAGES */
+#advantages {
+  background: white;
+}
+
+.adv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+.adv-card {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 32px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.adv-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.adv-icon {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.adv-card h4 {
+  font-size: 17px;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.adv-card p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* TRACK RECORD */
+#track-record {
+  background: var(--bg-light);
+}
+
+.record-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.record-table thead {
+  background: var(--primary);
+}
+
+.record-table th {
+  color: white;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.record-table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #555;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.record-table tr:hover td {
+  background: rgba(200, 168, 69, 0.04);
+}
+
+.record-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tag-buy {
+  background: rgba(200, 168, 69, 0.15);
+  color: #8a7020;
+}
+
+.tag-rent {
+  background: rgba(45, 90, 30, 0.12);
+  color: #2d5a1e;
+}
+
+/* SERVICES */
+#services {
+  background: white;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.service-card {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 36px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.service-card .num {
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(26, 58, 26, 0.06);
+  position: absolute;
+  top: 16px;
+  right: 24px;
+}
+
+.service-card h3 {
+  font-size: 20px;
+  color: var(--primary);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.service-card .tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(200, 168, 69, 0.12);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* ORG CHART */
+#org {
+  background: var(--bg-dark);
+}
+
+#org .section-title {
+  color: var(--text-light);
+}
+
+#org .section-desc {
+  color: rgba(240, 240, 232, 0.6);
+}
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 20px 0;
+}
+
+.org-level {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.org-node {
+  background: rgba(200, 168, 69, 0.1);
+  border: 1px solid rgba(200, 168, 69, 0.25);
+  border-radius: 10px;
+  padding: 14px 24px;
+  text-align: center;
+  min-width: 160px;
+  transition: all 0.3s;
+}
+
+.org-node:hover {
+  border-color: var(--accent);
+  background: rgba(200, 168, 69, 0.18);
+}
+
+.org-node.head {
+  background: rgba(200, 168, 69, 0.2);
+  border: 2px solid var(--accent);
+}
+
+.org-node .name {
+  color: var(--text-light);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.org-node .title {
+  color: var(--accent);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.org-connector {
+  width: 2px;
+  height: 28px;
+  background: rgba(200, 168, 69, 0.3);
+  margin: 0 auto;
+}
+
+.org-h-line {
+  width: 80%;
+  height: 2px;
+  background: rgba(200, 168, 69, 0.2);
+  margin: 0 auto;
+}
+
+/* TEAM */
+#team {
+  background: var(--bg-light);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.team-card {
+  background: white;
+  border-radius: 12px;
+  padding: 32px 20px;
+  text-align: center;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.team-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(200, 168, 69, 0.15);
+}
+
+.team-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+}
+
+.team-card h4 {
+  font-size: 18px;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.team-card .role {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.team-card p {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.6;
+}
+
+.team-card .view-more {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--primary-light);
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.team-card:hover .view-more {
+  opacity: 1;
+}
+
+/* MEMBER DETAIL */
+.member-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(15, 31, 15, 0.85);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 80px 20px 40px;
+}
+
+.member-overlay.active {
+  display: flex;
+}
+
+.member-detail {
+  background: white;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.member-detail-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+}
+
+.member-detail-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.member-detail-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.member-detail-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: white;
+  border: 3px solid rgba(200, 168, 69, 0.4);
+  flex-shrink: 0;
+}
+
+.member-detail-info h2 {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.member-detail-info .title {
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.member-detail-info .company {
+  color: rgba(240, 240, 232, 0.6);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.member-detail-body {
+  padding: 40px;
+}
+
+.detail-section {
+  margin-bottom: 32px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.detail-section p,
+.detail-section li {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.9;
+}
+
+.detail-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.detail-section ul li {
+  padding: 6px 0 6px 20px;
+  position: relative;
+}
+
+.detail-section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-tag {
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(200, 168, 69, 0.1);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* CONTACT */
+#contact {
+  background: var(--bg-dark);
+  text-align: center;
+}
+
+#contact .section-title {
+  color: var(--text-light);
+}
+
+#contact .section-desc {
+  color: rgba(240, 240, 232, 0.6);
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.contact-item {
+  color: var(--text-light);
+  text-align: center;
+}
+
+.contact-item .icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(200, 168, 69, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 22px;
+}
+
+.contact-item .label {
+  font-size: 12px;
+  color: rgba(240, 240, 232, 0.5);
+  letter-spacing: 1px;
+}
+
+.contact-item .value {
+  font-size: 15px;
+  margin-top: 4px;
+  color: var(--accent);
+}
+
+footer {
+  background: #0a170a;
+  padding: 32px 40px;
+  text-align: center;
+  color: rgba(240, 240, 232, 0.3);
+  font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(15, 31, 15, 0.98);
+    padding: 20px;
+    gap: 16px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .mobile-toggle {
+    display: block;
+  }
+  section {
+    padding: 60px 20px;
+  }
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact-info {
+    gap: 28px;
+  }
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .member-detail-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 36px 24px;
+  }
+  .member-detail-body {
+    padding: 24px;
+  }
+  .member-overlay {
+    padding: 20px 12px 40px;
+  }
+  .record-table {
+    font-size: 12px;
+  }
+  .record-table th,
+  .record-table td {
+    padding: 8px 10px;
+  }
+  .adv-grid {
+    grid-template-columns: 1fr;
+  }
+  .org-level {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.team-avatar-wrap {
+  width: 100%;
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  background: #eee;
+  border-radius: 10px 10px 0 0;
+}
+
+.team-photo-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.member-detail-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.member-photo-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+</style>
 </head>
 <body>
 
+<!-- 頂部橫幅公告 -->
+<div id="top-banner" style="position:fixed; top:0; left:0; right:0; z-index:150; background:#f0f5f0; text-align:center; padding:12px 40px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+  <img src="images/banner.jpg" alt="115年委託專業仲介協助產業用地媒合專案｜瑞禾不動產獲經濟部評選"
+       style="max-width:480px; width:90%; display:block; margin:0 auto; border-radius:8px; box-shadow:0 4px 18px rgba(28,87,57,0.18); cursor:pointer;"
+       onclick="closeBanner()" />
+  <button onclick="closeBanner()"
+          style="position:absolute; top:8px; right:12px; background:rgba(0,0,0,0.15); border:none; border-radius:50%; width:28px; height:28px; font-size:1rem; line-height:1; cursor:pointer; color:#333; display:flex; align-items:center; justify-content:center;"
+          aria-label="關閉橫幅">✕</button>
+</div>
+
 <!-- NAV -->
-<nav>
+<nav id="mainNav">
   <a class="nav-logo" onclick="closeMemberDetail();window.scrollTo({top:0,behavior:'smooth'})">
     <div class="logo-icon">禾</div>
     <span>瑞禾不動產</span>
@@ -225,7 +1024,7 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
   </div>
 </section>
 
-<!-- ✏️ 公司簡介沿革 -->
+<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="section-header">
@@ -262,7 +1061,7 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
   </div>
 </section>
 
-<!-- ✏️ 核心優勢 -->
+<!-- ADVANTAGES -->
 <section id="advantages">
   <div class="container">
     <div class="section-header">
@@ -270,42 +1069,11 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
       <h2 class="section-title">核心優勢</h2>
       <p class="section-desc">跨領域團隊、全方位服務、精準媒合</p>
     </div>
-    <div class="adv-grid">
-      <div class="adv-card">
-        <div class="adv-icon">&#x1F3DB;</div>
-        <h4>政府專案執行經驗</h4>
-        <p>105-112年連續8年承接經濟部產業園區管理局北中南區產業用地媒合案，具備豐富公部門專案履約經驗。</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-icon">&#x1F91D;</div>
-        <h4>專業知識分工團隊</h4>
-        <p>團隊配置計畫主持人、法律顧問、地政士、經紀人及專案人員，以專業分工取代傳統單兵作戰。</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-icon">&#x1F4CB;</div>
-        <h4>全員國家級證照</h4>
-        <p>所有專案執行人員均具備不動產經紀人、營業員、地政士等國家級專業證照，確保服務合法合規。</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-icon">&#x1F3AF;</div>
-        <h4>深耕中臺灣產業聚落</h4>
-        <p>服務範圍涵蓋苗栗、臺中、彰化、南投四大行政區，涵蓋全興、線西、大甲、銅鑼等核心工業區。</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-icon">&#x1F512;</div>
-        <h4>交易安全多重保障</h4>
-        <p>繳存營業保證金25萬元、專案履約保證金14萬元，所有成交案強制採用「買賣價金履約保證機制」。</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-icon">&#x1F310;</div>
-        <h4>一站式整合方案</h4>
-        <p>整合法律顧問、特約地政士及專業經紀人組成顧問團隊，提供設廠法令諮詢、廠商進駐、土地媒合全流程服務。</p>
-      </div>
-    </div>
+    <div class="adv-grid" id="advGrid"></div>
   </div>
 </section>
 
-<!-- ✏️ 過往實績 -->
+<!-- TRACK RECORD -->
 <section id="track-record">
   <div class="container">
     <div class="section-header">
@@ -385,7 +1153,7 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
   </div>
 </section>
 
-<!-- ✏️ 服務項目 -->
+<!-- SERVICES -->
 <section id="services">
   <div class="container">
     <div class="section-header">
@@ -397,7 +1165,7 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
   </div>
 </section>
 
-<!-- ✏️ 組織架構圖 -->
+<!-- ORG CHART -->
 <section id="org">
   <div class="container">
     <div class="section-header">
@@ -406,24 +1174,20 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
       <p class="section-desc">專業分工、層級明確、跨域協作</p>
     </div>
     <div class="org-chart">
-      <!-- Level 1: 總召集人 -->
       <div class="org-level">
         <div class="org-node head"><div class="name">黃錠銘</div><div class="title">專案計畫總召集人・董事長</div></div>
       </div>
       <div class="org-connector"></div>
-      <!-- Level 2: 主持人 -->
       <div class="org-level">
         <div class="org-node head"><div class="name">張現傑</div><div class="title">專案計畫主持人・業務總監</div></div>
       </div>
       <div class="org-connector"></div>
-      <!-- Level 3: 協同主持人 -->
       <div class="org-level">
         <div class="org-node"><div class="name">張凱翔</div><div class="title">協同計畫主持人・協理</div></div>
       </div>
       <div class="org-connector"></div>
       <div class="org-h-line"></div>
       <div style="height:12px;"></div>
-      <!-- Level 4: 專業支援 -->
       <div class="org-level">
         <div class="org-node"><div class="name">法律顧問</div><div class="title">專業法務諮詢</div></div>
         <div class="org-node"><div class="name">羅清萬</div><div class="title">不動產經紀人・執行副總</div></div>
@@ -432,7 +1196,6 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
       <div class="org-connector"></div>
       <div class="org-h-line"></div>
       <div style="height:12px;"></div>
-      <!-- Level 5: 業務團隊 -->
       <div class="org-level">
         <div class="org-node"><div class="name">歐穗鳳</div><div class="title">專案業務經理</div></div>
         <div class="org-node"><div class="name">李武燦</div><div class="title">專案業務經理</div></div>
@@ -443,7 +1206,6 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
       <div class="org-connector"></div>
       <div class="org-h-line" style="width:30%;"></div>
       <div style="height:12px;"></div>
-      <!-- Level 6: 行政支援 -->
       <div class="org-level">
         <div class="org-node"><div class="name">黃家禎</div><div class="title">專案行政人員</div></div>
         <div class="org-node"><div class="name">張維純</div><div class="title">專案行政人員</div></div>
@@ -478,10 +1240,10 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
       <p class="section-desc">歡迎洽詢，我們將為您提供最專業的諮詢服務</p>
     </div>
     <div class="contact-info">
-      <div class="contact-item"><div class="icon">&#x1F4CD;</div><div class="label">地址</div><div class="value">臺中市南屯區益豐路四段91號</div></div>
-      <div class="contact-item"><div class="icon">&#x1F4DE;</div><div class="label">電話</div><div class="value">04-2380-3560</div></div>
-      <div class="contact-item"><div class="icon">&#x1F4E0;</div><div class="label">傳真</div><div class="value">04-2380-3160</div></div>
-      <div class="contact-item"><div class="icon">&#x1F464;</div><div class="label">聯絡人</div><div class="value">張現傑 工業地產部業務總監</div></div>
+      <div class="contact-item"><div class="icon">📍</div><div class="label">地址</div><div class="value">臺中市南屯區益豐路四段91號</div></div>
+      <div class="contact-item"><div class="icon">📞</div><div class="label">電話</div><div class="value">04-2380-3560</div></div>
+      <div class="contact-item"><div class="icon">📠</div><div class="label">傳真</div><div class="value">04-2380-3160</div></div>
+      <div class="contact-item"><div class="icon">👤</div><div class="label">聯絡人</div><div class="value">張現傑 工業地產部業務總監</div></div>
     </div>
   </div>
 </section>
@@ -489,170 +1251,155 @@ footer{background:#0a170a;padding:32px 40px;text-align:center;color:rgba(240,240
 <footer><p>&copy; 2026 瑞禾不動產經紀股份有限公司 RUIHE Real Estate. All Rights Reserved.</p></footer>
 
 <script>
-/* ✏️ 服務項目 */
-const servicesData = [
-  { title:"閒置用地調查與資料庫建立", tag:"SURVEY", desc:"針對苗中彰投四縣市之指定產業園區及潛在產業用地，進行實地勘查與調閱地籍資料，精確掌握土地利用現況。" },
-  { title:"潛在投資廠商開發", tag:"INVESTOR", desc:"採主動拜訪與通路引流雙軌策略，定期參與各大產業公會年會及聯誼活動，主動蒐集企業擴廠、回流投資意向。" },
-  { title:"產業用地媒合與全程履歷管理", tag:"MATCHING", desc:"將媒合作業區分仲介媒合、媒合成功、合法使用追蹤三大階段，建構資訊對稱之媒合環境，降低供需雙方溝通成本。" },
-  { title:"政策法令教育訓練", tag:"TRAINING", desc:"不定期舉辦人員教育訓練，由法律顧問與資深計畫主持人親自授課，確保團隊精準解讀政策指令與法令現況。" },
-  { title:"專人專案單一聯絡窗口", tag:"WINDOW", desc:"建立與中部各產業園區服務中心之單一窗口機制，即時掌握園區內廠商需求或土地釋出訊息。" },
-  { title:"一站式專業諮詢協助", tag:"ONE-STOP", desc:"整合法律顧問、特約地政士及專業經紀人，提供設廠法令諮詢、廠商進駐諮詢、土地媒合等全方位服務。" },
-  { title:"多元行銷通路與資訊披露", tag:"MARKETING", desc:"透過各大廣告平台、廣告刊物、現場帆布廣告及台灣工業用地供給與服務資訊網等管道，公開披露待媒合土地資訊。" },
-  { title:"執行人員控管機制", tag:"CONTROL", desc:"執行人員名單報備機關，統一佩戴專屬識別證進行現地訪視，確保執行程序之專業性與安全防範。" }
-];
-
-/* ✏️ 團隊成員 */
-const teamData = [
-  {
-    name:"黃錠銘", role:"專案計畫總召集人", company:"瑞禾不動產經紀股份有限公司 董事長", color:"#1a3a1a",
-    shortIntro:"20年不動產開發經驗，專精產業用地媒合與大型專案規劃。",
-    education:"逢甲大學 都市計畫與空間資訊學研究所（畢）",
-    duty:"負責本計畫之總體規劃",
-    experience:["豐禾地產總經理（104-109年）","台中市不動產發展協會副理事長（114-116年）","高科技產業發展基金會董事（113-115年）"],
-    expertise:["產業用地媒合與招商：熟悉工業區、市地重劃區開發輔導","工業地產法規：具備未登記工廠清查、納管及合法化實務經驗","大型廠房整合：擅長高價值產業不動產之買賣與租賃協調"],
-    achievements:["經濟部產業園區管理局：105-112年連續8年北中南區產業用地媒合案專案計畫主持人","新北市政府：108-109年林口工一及寶高智慧產業園區招商計畫主持人","108年臺中市清查未登記工廠工作計畫主持人","「苗栗縣政府清查未登記工廠計畫」委託專業服務案計畫主持人","「新竹市清查未登記工廠工作計畫」委託專業服務案計畫主持人"],
-    licenses:[]
-  },
-  {
-    name:"張現傑", role:"專案計畫主持人", company:"瑞禾不動產經紀股份有限公司 工業地產部業務總監", color:"#2d5a1e",
-    shortIntro:"不動產業務執行專家，專精市場分析與專案整合。",
-    education:"長庚大學 資訊管理研究所（畢）",
-    duty:"負責本計畫之執行與進度控管，整合不動產專業評估、法規與實務經驗，統籌相關資源與專業人員，並擔任主要對外聯繫與專業決策窗口",
-    experience:["睦聚地產開發業務總監","磐石地產業務總監","信義全球資產中區商仲部業務總監","信義房屋業務及業務經理"],
-    expertise:["不動產業務執行","市場分析、交易流程規劃","專案整合與風險評估"],
-    achievements:["商仲體系開拓：主導成立信義全球資產中區商仲部，奠定中部商用不動產專業服務基礎","建地開發整合：整合多筆指標性建地，為惠宇、德鑫等知名建設公司合作夥伴","工業資產配置：協助日商優乃克、聯強國際、歐客佬國際、仟泰化工、捷雅工程及科宇數位等指標企業完成廠房選址與資產活化"],
-    licenses:["不動產經紀人證照：(108)中市經紀字第01847號"]
-  },
-  {
-    name:"張凱翔", role:"協同專案計畫主持人", company:"瑞禾不動產經紀股份有限公司 協理", color:"#3a6b28",
-    shortIntro:"專精市地重劃與多元媒體資源整合。",
-    education:"逢甲大學 都市計畫與空間資訊學系研究所（畢）",
-    duty:"負責本計畫之行政管理、策略擬定與專案資料控管",
-    experience:["瑞禾開發股份有限公司 3年","瑞禾不動產經紀股份有限公司 2年"],
-    expertise:["市地重劃、自辦產業園區開發輔導","多元媒體資源整合","不動產之買賣與租賃協調"],
-    achievements:["協助完成新北市文高一、二市地重劃案媒體影音製作（已結案）","協助完成新竹中油油庫市地重劃案媒體影音製作（已結案）","協助嘉義縣縣治二期市地重劃案媒體影音製作及媒體曝光（辦理中）","108年臺中市清查未登記工廠工作計畫專案人員（已結案）","「苗栗縣政府清查未登記工廠計畫」委託專業服務案專案人員（已結案）"],
-    licenses:[]
-  },
-  {
-    name:"羅清萬", role:"不動產經紀人", company:"瑞禾不動產經紀股份有限公司 執行副總", color:"#1a4a2a",
-    shortIntro:"負責買賣交易、租賃契約擬定與整體交易安全管控。",
-    education:"逢甲大學 建設學院碩士（畢）",
-    duty:"負責本計畫之買賣交易、租賃契約擬定執行、整體交易安全管控",
-    experience:["台慶不動產 7年","富旺房屋 2年","信義房屋 2年"],
-    expertise:["市地重劃、自辦產業園區開發輔導","不動產之買賣與租賃協調"],
-    achievements:[],
-    licenses:["不動產經紀人證照：(100)中市經紀字第00156號"]
-  },
-  {
-    name:"陳元宏", role:"專案特約地政士", company:"勝浤地政士事務所 執行地政士", color:"#2a5535",
-    shortIntro:"專精產業用地交易法規、稅法及交易安全控管。",
-    education:"逢甲大學 建設學院碩士（畢）",
-    duty:"負責本計畫之買賣交易、租賃契約擬定執行、整體交易安全管控",
-    experience:["陸府建設有限公司 2年","信義地政士事務所 5年","開元不動產經紀業股份有限公司 4年","台北富邦銀行 1年","勝浤地政士事務所 15年"],
-    expertise:["產業用地交易相關法規","不動產交易相關稅法、應配合事項","高價值產業不動產之買賣與租賃契約擬定及交易安全控管"],
-    achievements:[],
-    licenses:["不動產經紀人：(103)中市經紀字第00338號","地政士執照：(101)中市地士字第000334號","國土計畫專業訓練：國土專試字第112C192號"]
-  },
-  {
-    name:"歐穗鳳", role:"專案業務經理", company:"瑞禾不動產經紀股份有限公司 業務", color:"#1e4520",
-    shortIntro:"專精不動產買賣與租賃協調。",
-    education:"高雄餐旅大學餐旅學院 旅館管理系（畢）",
-    duty:"產業用地之買賣與租賃",
-    experience:["台灣房屋 3年","代書事務所 2年"],
-    expertise:["不動產之買賣與租賃協調"],
-    achievements:[],
-    licenses:["不動產營業員證書：(107)登字第331322號"]
-  },
-  {
-    name:"黃家禎", role:"專案行政人員", company:"瑞禾不動產經紀股份有限公司 業務", color:"#325a18",
-    shortIntro:"負責文書帳務處理、案件進度追蹤與行政庶務。",
-    education:"朝陽科技大學 會計系（畢）",
-    duty:"各項文書及帳務處理",
-    experience:["瑞禾開發股份有限公司 4年"],
-    expertise:["協助主管辦理市地重劃、自辦產業園區開發","整理客戶資料、案件進度追蹤","製作與維護物件資料（地號、坪數、價格、使用分區等）","協助製作每月收支報表、財務報表及管理報表","配合會計師、記帳士進行帳務及財務資料提供"],
-    achievements:[],
-    licenses:["不動產營業員證書：(114)登字第501096號"]
-  },
-  {
-    name:"李武燦", role:"專案業務經理", company:"瑞禾不動產經紀股份有限公司 店長", color:"#2a4a15",
-    shortIntro:"不動產經營管理、開發銷售與仲介。",
-    education:"大明中學 資訊科",
-    duty:"產業用地之買賣與租賃",
-    experience:[],
-    expertise:["不動產經營管理","開發銷售","仲介"],
-    achievements:[],
-    licenses:["不動產營業員證書：登字第429739號","租賃住宅管理人員：第014878號"]
-  },
-  {
-    name:"羅長庚", role:"專案業務經理", company:"瑞禾不動產經紀股份有限公司 店長", color:"#1a3a2a",
-    shortIntro:"專精市地重劃區開發媒合。",
-    education:"國立勤益科技大學 機電產業研發與管理產業碩士專班（畢）",
-    duty:"產業用地之買賣與租賃",
-    experience:["市地重劃區開發媒合"],
-    expertise:["市地重劃區開發媒合"],
-    achievements:[],
-    licenses:["不動產營業員證書：(111)登字第426942號","農地規劃師證照"]
-  },
-  {
-    name:"張維純", role:"專案行政人員", company:"瑞禾不動產經紀股份有限公司 秘書", color:"#284a22",
-    shortIntro:"負責文書處理、簡報製作與物件行銷。",
-    education:"朝陽科技大學 傳播藝術系（畢）",
-    duty:"各項文書及帳務處理",
-    experience:["有巢氏房屋 3年","瑞禾不動產經紀股份有限公司 2年"],
-    expertise:["協助主管辦理市地重劃、自辦產業園區開發","整理客戶資料、案件進度追蹤","協助主管簡報製作、資料統整","協助物件行銷事項（平台上架、廣告製作、彩圖製作）","協助人事相關行政事項"],
-    achievements:[],
-    licenses:["不動產經紀人證照：(114)中市經紀字02353號"]
-  },
-  {
-    name:"王廷家", role:"專案業務經理", company:"瑞禾不動產經紀股份有限公司 店長", color:"#2d4a18",
-    shortIntro:"深耕台中新興重劃區，專精土地開發整合。",
-    education:"南開科技大學 行銷流通管理系（畢）",
-    duty:"產業用地之買賣與租賃",
-    experience:["不動產經營管理、開發銷售、仲介"],
-    expertise:["土地開發整合","市地重劃實務","區段徵收規劃"],
-    achievements:["重劃區開發媒合：深耕台中市新興重劃區，成功主導單元二、單元三及十三期等多筆關鍵重劃土地之整合與仲介成交"],
-    licenses:["不動產經紀人證照：(104)中市經紀字第294056號"]
-  },
-  {
-    name:"陳仁奕", role:"專案業務經理", company:"瑞禾不動產經紀股份有限公司 業務經理", color:"#1a4520",
-    shortIntro:"工業用地媒合專家，長期配合經濟部工業局專案。",
-    education:"建國科技大學 土木工程系（畢）",
-    duty:"產業用地之買賣與租賃",
-    experience:["經濟部工業局工業區媒合專案專案人員（自民國105年起）","工業地產資深專業經理人"],
-    expertise:["工業用地媒合","企業設廠選址評估","土地使用分區變更","工業區法規諮詢"],
-    achievements:["指標企業服務：協助上市公司「立隆電子」進駐全興廠區，完成約3000坪產專用地之媒合交易","公部門專案執行：長期配合經濟部工業局專案，服務範圍涵蓋全興、線西、大甲、銅鑼等中部核心工業區","土地效益提升：成功執行倉儲用地之工業區分區變更為丁種建築用地"],
-    licenses:["不動產營業員：(112)登字第434041號"]
+// ── 頂部橫幅控制 ──────────────────────────────
+function adjustNavForBanner() {
+  var banner = document.getElementById('top-banner');
+  var nav = document.getElementById('mainNav');
+  if (banner && nav) {
+    var bh = (banner.style.display === 'none') ? 0 : banner.offsetHeight;
+    nav.style.top = bh + 'px';
   }
+}
+
+function closeBanner() {
+  var banner = document.getElementById('top-banner');
+  var nav = document.getElementById('mainNav');
+  if (banner) banner.style.display = 'none';
+  if (nav) nav.style.top = '0';
+}
+
+window.addEventListener('load', adjustNavForBanner);
+window.addEventListener('resize', adjustNavForBanner);
+// ─────────────────────────────────────────────
+
+// Services data
+const servicesData = [
+  { title: "閒置用地調查與資料庫建立", tag: "SURVEY", desc: "針對苗中彰投四縣市之指定產業園區及潛在產業用地，進行實地勘查與調閱地籍資料，精確掌握土地利用現況。" },
+  { title: "潛在投資廠商開發", tag: "INVESTOR", desc: "採主動拜訪與通路引流雙軌策略，定期參與各大產業公會年會及聯誼活動，主動蒐集企業擴廠、回流投資意向。" },
+  { title: "產業用地媒合與全程履歷管理", tag: "MATCHING", desc: "將媒合作業區分仲介媒合、媒合成功、合法使用追蹤三大階段，建構資訊對稱之媒合環境，降低供需雙方溝通成本。" },
+  { title: "政策法令教育訓練", tag: "TRAINING", desc: "不定期舉辦人員教育訓練，由法律顧問與資深計畫主持人親自授課，確保團隊精準解讀政策指令與法令現況。" },
+  { title: "專人專案單一聯絡窗口", tag: "WINDOW", desc: "建立與中部各產業園區服務中心之單一窗口機制，即時掌握園區內廠商需求或土地釋出訊息。" },
+  { title: "一站式專業諮詢協助", tag: "ONE-STOP", desc: "整合法律顧問、特約地政士及專業經紀人，提供設廠法令諮詢、廠商進駐諮詢、土地媒合等全方位服務。" },
+  { title: "多元行銷通路與資訊披露", tag: "MARKETING", desc: "透過各大廣告平台、廣告刊物、現場帆布廣告及台灣工業用地供給與服務資訊網等管道，公開披露待媒合土地資訊。" },
+  { title: "執行人員控管機制", tag: "CONTROL", desc: "執行人員名單報備機關，統一佩戴專屬識別證進行現地訪視，確保執行程序之專業性與安全防範。" }
 ];
 
-var nameMap={"黃錠銘":"huang-dingming","張現傑":"chang-hienjie","張凱翔":"chang-kaixiang","羅清萬":"luo-qingwan","陳元宏":"chen-yuanhong","歐穗鳳":"ou-suifeng","黃家禎":"huang-jiazhen","李武燦":"li-wucan","羅長庚":"luo-changgeng","張維純":"chang-weichun","王廷家":"wang-tingjia","陳仁奕":"chen-renyi"};
+// Team data
+const teamData = [
+  { name: "黃錠銘", role: "專案計畫總召集人", company: "瑞禾不動產經紀股份有限公司 董事長", color: "#1a3a1a", shortIntro: "20年不動產開發經驗，專精產業用地媒合與大型專案規劃。", education: "逢甲大學 都市計畫與空間資訊學研究所（畢）", duty: "負責本計畫之總體規劃", experience: ["豐禾地產總經理（104-109年）", "台中市不動產發展協會副理事長（114-116年）", "高科技產業發展基金會董事（113-115年）"], expertise: ["產業用地媒合與招商：熟悉工業區、市地重劃區開發輔導", "工業地產法規：具備未登記工廠清查、納管及合法化實務經驗", "大型廠房整合：擅長高價值產業不動產之買賣與租賃協調"], achievements: ["經濟部產業園區管理局：105-112年連續8年北中南區產業用地媒合案專案計畫主持人", "新北市政府：108-109年林口工一及寶高智慧產業園區招商計畫主持人", "108年臺中市清查未登記工廠工作計畫主持人", "「苗栗縣政府清查未登記工廠計畫」委託專業服務案計畫主持人", "「新竹市清查未登記工廠工作計畫」委託專業服務案計畫主持人"], licenses: [] },
+  { name: "張現傑", role: "專案計畫主持人", company: "瑞禾不動產經紀股份有限公司 工業地產部業務總監", color: "#2d5a1e", shortIntro: "不動產業務執行專家，專精市場分析與專案整合。", education: "長庚大學 資訊管理研究所（畢）", duty: "負責本計畫之執行與進度控管，整合不動產專業評估、法規與實務經驗，統籌相關資源與專業人員，並擔任主要對外聯繫與專業決策窗口", experience: ["睦聚地產開發業務總監", "磐石地產業務總監", "信義全球資產中區商仲部業務總監", "信義房屋業務及業務經理"], expertise: ["不動產業務執行", "市場分析、交易流程規劃", "專案整合與風險評估"], achievements: ["商仲體系開拓：主導成立信義全球資產中區商仲部，奠定中部商用不動產專業服務基礎", "建地開發整合：整合多筆指標性建地，為惠宇、德鑫等知名建設公司合作夥伴", "工業資產配置：協助日商優乃克、聯強國際、歐客佬國際、仟泰化工、捷雅工程及科宇數位等指標企業完成廠房選址與資產活化"], licenses: ["不動產經紀人證照：(108)中市經紀字第01847號"] },
+  { name: "張凱翔", role: "協同專案計畫主持人", company: "瑞禾不動產經紀股份有限公司 協理", color: "#3a6b28", shortIntro: "專精市地重劃與多元媒體資源整合。", education: "逢甲大學 都市計畫與空間資訊學系研究所（畢）", duty: "負責本計畫之行政管理、策略擬定與專案資料控管", experience: ["瑞禾開發股份有限公司 3年", "瑞禾不動產經紀股份有限公司 2年"], expertise: ["市地重劃、自辦產業園區開發輔導", "多元媒體資源整合", "不動產之買賣與租賃協調"], achievements: ["協助完成新北市文高一、二市地重劃案媒體影音製作（已結案）", "協助完成新竹中油油庫市地重劃案媒體影音製作（已結案）", "協助嘉義縣縣治二期市地重劃案媒體影音製作及媒體曝光（辦理中）", "108年臺中市清查未登記工廠工作計畫專案人員（已結案）", "「苗栗縣政府清查未登記工廠計畫」委託專業服務案專案人員（已結案）"], licenses: [] },
+  { name: "羅清萬", role: "不動產經紀人", company: "瑞禾不動產經紀股份有限公司 執行副總", color: "#1a4a2a", shortIntro: "負責買賣交易、租賃契約擬定與整體交易安全管控。", education: "逢甲大學 建設學院碩士（畢）", duty: "負責本計畫之買賣交易、租賃契約擬定執行、整體交易安全管控", experience: ["台慶不動產 7年", "富旺房屋 2年", "信義房屋 2年"], expertise: ["市地重劃、自辦產業園區開發輔導", "不動產之買賣與租賃協調"], achievements: [], licenses: ["不動產經紀人證照：(100)中市經紀字第00156號"] },
+  { name: "陳元宏", role: "專案特約地政士", company: "勝浤地政士事務所 執行地政士", color: "#2a5535", shortIntro: "專精產業用地交易法規、稅法及交易安全控管。", education: "逢甲大學 建設學院碩士（畢）", duty: "負責本計畫之買賣交易、租賃契約擬定執行、整體交易安全管控", experience: ["陸府建設有限公司 2年", "信義地政士事務所 5年", "開元不動產經紀業股份有限公司 4年", "台北富邦銀行 1年", "勝浤地政士事務所 15年"], expertise: ["產業用地交易相關法規", "不動產交易相關稅法、應配合事項", "高價值產業不動產之買賣與租賃契約擬定及交易安全控管"], achievements: [], licenses: ["不動產經紀人：(103)中市經紀字第00338號", "地政士執照：(101)中市地士字第000334號", "國土計畫專業訓練：國土專試字第112C192號"] },
+  { name: "歐穗鳳", role: "專案業務經理", company: "瑞禾不動產經紀股份有限公司 業務", color: "#1e4520", shortIntro: "專精不動產買賣與租賃協調。", education: "高雄餐旅大學餐旅學院 旅館管理系（畢）", duty: "產業用地之買賣與租賃", experience: ["台灣房屋 3年", "代書事務所 2年"], expertise: ["不動產之買賣與租賃協調"], achievements: [], licenses: ["不動產營業員證書：(107)登字第331322號"] },
+  { name: "黃家禎", role: "專案行政人員", company: "瑞禾不動產經紀股份有限公司 業務", color: "#325a18", shortIntro: "負責文書帳務處理、案件進度追蹤與行政庶務。", education: "朝陽科技大學 會計系（畢）", duty: "各項文書及帳務處理", experience: ["瑞禾開發股份有限公司 4年"], expertise: ["協助主管辦理市地重劃、自辦產業園區開發", "整理客戶資料、案件進度追蹤", "製作與維護物件資料（地號、坪數、價格、使用分區等）", "協助製作每月收支報表、財務報表及管理報表", "配合會計師、記帳士進行帳務及財務資料提供"], achievements: [], licenses: ["不動產營業員證書：(114)登字第501096號"] },
+  { name: "李武燦", role: "專案業務經理", company: "瑞禾不動產經紀股份有限公司 店長", color: "#2a4a15", shortIntro: "不動產經營管理、開發銷售與仲介。", education: "大明中學 資訊科", duty: "產業用地之買賣與租賃", experience: [], expertise: ["不動產經營管理", "開發銷售", "仲介"], achievements: [], licenses: ["不動產營業員證書：登字第429739號", "租賃住宅管理人員：第014878號"] },
+  { name: "羅長庚", role: "專案業務經理", company: "瑞禾不動產經紀股份有限公司 店長", color: "#1a3a2a", shortIntro: "專精市地重劃區開發媒合。", education: "國立勤益科技大學 機電產業研發與管理產業碩士專班（畢）", duty: "產業用地之買賣與租賃", experience: ["市地重劃區開發媒合"], expertise: ["市地重劃區開發媒合"], achievements: [], licenses: ["不動產營業員證書：(111)登字第426942號", "農地規劃師證照"] },
+  { name: "張維純", role: "專案行政人員", company: "瑞禾不動產經紀股份有限公司 秘書", color: "#284a22", shortIntro: "負責文書處理、簡報製作與物件行銷。", education: "朝陽科技大學 傳播藝術系（畢）", duty: "各項文書及帳務處理", experience: ["有巢氏房屋 3年", "瑞禾不動產經紀股份有限公司 2年"], expertise: ["協助主管辦理市地重劃、自辦產業園區開發", "整理客戶資料、案件進度追蹤", "協助主管簡報製作、資料統整", "協助物件行銷事項（平台上架、廣告製作、彩圖製作）", "協助人事相關行政事項"], achievements: [], licenses: ["不動產經紀人證照：(114)中市經紀字02353號"] },
+  { name: "王廷家", role: "專案業務經理", company: "瑞禾不動產經紀股份有限公司 店長", color: "#2d4a18", shortIntro: "深耕台中新興重劃區，專精土地開發整合。", education: "南開科技大學 行銷流通管理系（畢）", duty: "產業用地之買賣與租賃", experience: ["不動產經營管理、開發銷售、仲介"], expertise: ["土地開發整合", "市地重劃實務", "區段徵收規劃"], achievements: ["重劃區開發媒合：深耕台中市新興重劃區，成功主導單元二、單元三及十三期等多筆關鍵重劃土地之整合與仲介成交"], licenses: ["不動產經紀人證照：(104)中市經紀字第294056號"] },
+  { name: "陳仁奕", role: "專案業務經理", company: "瑞禾不動產經紀股份有限公司 業務經理", color: "#1a4520", shortIntro: "工業用地媒合專家，長期配合經濟部工業局專案。", education: "建國科技大學 土木工程系（畢）", duty: "產業用地之買賣與租賃", experience: ["經濟部工業局工業區媒合專案專案人員（自民國105年起）", "工業地產資深專業經理人"], expertise: ["工業用地媒合", "企業設廠選址評估", "土地使用分區變更", "工業區法規諮詢"], achievements: ["指標企業服務：協助上市公司「立隆電子」進駐全興廠區，完成約3000坪產專用地之媒合交易", "公部門專案執行：長期配合經濟部工業局專案，服務範圍涵蓋全興、線西、大甲、銅鑼等中部核心工業區", "土地效益提升：成功執行倉儲用地之工業區分區變更為丁種建築用地"], licenses: ["不動產營業員：(112)登字第434041號"] }
+];
+
+const nameMap = {
+  "黃錠銘": "huang-dingming",
+  "張現傑": "chang-hienjie",
+  "張凱翔": "chang-kaixiang",
+  "羅清萬": "luo-qingwan",
+  "陳元宏": "chen-yuanhong",
+  "歐穗鳳": "ou-suifeng",
+  "黃家禎": "huang-jiazhen",
+  "李武燦": "li-wucan",
+  "羅長庚": "luo-changgeng",
+  "張維純": "chang-weichun",
+  "王廷家": "wang-tingjia",
+  "陳仁奕": "chen-renyi"
+};
+
 // Render services
 const sg = document.getElementById('servicesGrid');
-servicesData.forEach((s,i)=>{
-  sg.innerHTML+=`<div class="service-card"><div class="num">0${i+1}</div><div class="tag">${s.tag}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`;
+servicesData.forEach((s, i) => {
+  sg.innerHTML += `<div class="service-card"><div class="num">0${i+1}</div><div class="tag">${s.tag}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`;
 });
 
 // Render team
 const tg = document.getElementById('teamGrid');
-teamData.forEach((t,i)=>{
-  tg.innerHTML+=`<div class="team-card" onclick="openMemberDetail(${i})"><div class="team-avatar-wrap"><img class="team-photo-thumb" src="images/persons/${nameMap[t.name]||'unknown'}.jpg" alt="${t.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><div class="team-avatar" style="background:${t.color};display:none">${t.name.charAt(0)}</div></div><h4>${t.name}</h4><div class="role">${t.role}</div><p>${t.shortIntro}</p><div class="view-more">點擊查看詳情 →</div></div>`;
+teamData.forEach((t, i) => {
+  tg.innerHTML += `<div class="team-card" onclick="openMemberDetail(${i})">
+    <div class="team-avatar-wrap">
+      <img class="team-photo-thumb" src="images/persons/${nameMap[t.name] || 'unknown'}.jpg" alt="${t.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+      <div class="team-avatar" style="background:${t.color};display:none">${t.name.charAt(0)}</div>
+    </div>
+    <h4>${t.name}</h4>
+    <div class="role">${t.role}</div>
+    <p>${t.shortIntro}</p>
+    <div class="view-more">點擊查看詳情 →</div>
+  </div>`;
 });
 
 // Member detail
-function openMemberDetail(idx){
-  const t=teamData[idx],o=document.getElementById('memberOverlay'),d=document.getElementById('memberDetail');
-  const prev=idx>0?idx-1:teamData.length-1, next=idx<teamData.length-1?idx+1:0;
-  let h=`<div class="member-detail-header"><button class="member-detail-close" onclick="closeMemberDetail()">&#10005;</button><div class="member-detail-avatar-wrap"><img class="member-photo-large" src="images/persons/${nameMap[t.name]||'unknown'}.jpg" alt="${t.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><div class="member-detail-avatar" style="background:${t.color};display:none">${t.name.charAt(0)}</div></div><div class="member-detail-info"><h2>${t.name}</h2><div class="title">${t.role}</div><div class="company">${t.company}</div></div></div><div class="member-detail-body"><div class="detail-section"><h3>&#127919; 本案負責工作</h3><p>${t.duty}</p></div><div class="detail-section"><h3>&#127891; 最高學歷</h3><p>${t.education}</p></div>`;
-  if(t.experience.length)h+=`<div class="detail-section"><h3>&#128188; 相關經歷</h3><ul>${t.experience.map(e=>`<li>${e}</li>`).join('')}</ul></div>`;
-  if(t.expertise.length)h+=`<div class="detail-section"><h3>&#11088; 專長領域</h3><div class="detail-tags">${t.expertise.map(e=>`<span class="detail-tag">${e}</span>`).join('')}</div></div>`;
-  if(t.achievements.length)h+=`<div class="detail-section"><h3>&#127942; 核心代表實績</h3><ul>${t.achievements.map(a=>`<li>${a}</li>`).join('')}</ul></div>`;
-  if(t.licenses.length)h+=`<div class="detail-section"><h3>&#128220; 專業證照</h3><ul>${t.licenses.map(l=>`<li>${l}</li>`).join('')}</ul></div>`;
-  h+=`<div style="display:flex;justify-content:space-between;margin-top:40px;padding-top:24px;border-top:1px solid #eee;"><button onclick="openMemberDetail(${prev})" style="padding:10px 24px;border:1px solid #ddd;border-radius:6px;background:white;cursor:pointer;font-size:14px;color:var(--primary);">← ${teamData[prev].name}</button><button onclick="openMemberDetail(${next})" style="padding:10px 24px;border:1px solid #ddd;border-radius:6px;background:white;cursor:pointer;font-size:14px;color:var(--primary);">${teamData[next].name} →</button></div></div>`;
-  d.innerHTML=h;o.classList.add('active');o.scrollTop=0;document.body.style.overflow='hidden';
+function openMemberDetail(idx) {
+  const t = teamData[idx];
+  const o = document.getElementById('memberOverlay');
+  const d = document.getElementById('memberDetail');
+  const prev = idx > 0 ? idx - 1 : teamData.length - 1;
+  const next = idx < teamData.length - 1 ? idx + 1 : 0;
+
+  let h = `<div class="member-detail-header">
+    <button class="member-detail-close" onclick="closeMemberDetail()">✕</button>
+    <div class="member-detail-avatar-wrap">
+      <img class="member-photo-large" src="images/persons/${nameMap[t.name] || 'unknown'}.jpg" alt="${t.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+      <div class="member-detail-avatar" style="background:${t.color};display:none">${t.name.charAt(0)}</div>
+    </div>
+    <div class="member-detail-info">
+      <h2>${t.name}</h2>
+      <div class="title">${t.role}</div>
+      <div class="company">${t.company}</div>
+    </div>
+  </div><div class="member-detail-body">
+    <div class="detail-section">
+      <h3>🎯 本案負責工作</h3>
+      <p>${t.duty}</p>
+    </div>
+    <div class="detail-section">
+      <h3>🎓 最高學歷</h3>
+      <p>${t.education}</p>
+    </div>`;
+
+  if (t.experience.length)
+    h += `<div class="detail-section"><h3>💼 相關經歷</h3><ul>${t.experience.map(e => `<li>${e}</li>`).join('')}</ul></div>`;
+
+  if (t.expertise.length)
+    h += `<div class="detail-section"><h3>⭐ 專長領域</h3><div class="detail-tags">${t.expertise.map(e => `<span class="detail-tag">${e}</span>`).join('')}</div></div>`;
+
+  if (t.achievements.length)
+    h += `<div class="detail-section"><h3>🏆 核心代表實績</h3><ul>${t.achievements.map(a => `<li>${a}</li>`).join('')}</ul></div>`;
+
+  if (t.licenses.length)
+    h += `<div class="detail-section"><h3>📜 專業證照</h3><ul>${t.licenses.map(l => `<li>${l}</li>`).join('')}</ul></div>`;
+
+  h += `<div style="display:flex;justify-content:space-between;margin-top:40px;padding-top:24px;border-top:1px solid #eee;">
+    <button onclick="openMemberDetail(${prev})" style="padding:10px 24px;border:1px solid #ddd;border-radius:6px;background:white;cursor:pointer;font-size:14px;color:var(--primary);">← ${teamData[prev].name}</button>
+    <button onclick="openMemberDetail(${next})" style="padding:10px 24px;border:1px solid #ddd;border-radius:6px;background:white;cursor:pointer;font-size:14px;color:var(--primary);">${teamData[next].name} →</button>
+  </div></div>`;
+
+  d.innerHTML = h;
+  o.classList.add('active');
+  o.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
 }
-function closeMemberDetail(){document.getElementById('memberOverlay').classList.remove('active');document.body.style.overflow='';}
-document.getElementById('memberOverlay').addEventListener('click',function(e){if(e.target===this)closeMemberDetail();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMemberDetail();});
+
+function closeMemberDetail() {
+  document.getElementById('memberOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('memberOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeMemberDetail();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMemberDetail();
+});
 </script>
 </body>
 </html>
